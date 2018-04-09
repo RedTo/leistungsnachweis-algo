@@ -9,7 +9,7 @@ using namespace std;
  * Class for n x n sudoku gatter
  */
 class SudokuGitter {
-    int lines[6][6];
+    vector<vector<int>> cells;
     const unsigned int elements;
 
 public:
@@ -21,6 +21,5 @@ public:
 
     void print();
 };
-
 
 #endif //TESTPROJECT_SUDOKUGITTER_H

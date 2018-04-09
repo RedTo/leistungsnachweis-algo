@@ -5,27 +5,29 @@
 #include <iostream>
 #include "SudokuGitter.h"
 
-SudokuGitter::SudokuGitter(const unsigned int elements) : elements(elements) {
+SudokuGitter::SudokuGitter(const unsigned int elements) : elements(elements), cells(elements, vector<int>(elements)) {
 }
 
 void SudokuGitter::generateNew() {
     for (int irow = 0; irow < elements; ++irow) {
         for (int icol = 0; icol < elements; ++icol) {
-            lines[irow][icol] = irow * 6 + icol;
+            cells[irow][icol] = irow * elements + icol;
         }
     }
 }
 
 int SudokuGitter::getCell(int row, int column) {
-    return lines[row][column];
+    return cells[row][column];
 }
 
 void SudokuGitter::print() {
-    for (int irow = 0; irow < 6; ++irow) {
+    for (int irow = 0; irow < elements; ++irow) {
         std::cout << "|";
-        for (int icol = 0; icol < 6; ++icol) {
-            std::cout << lines[irow][icol] << "|";
+        for (int icol = 0; icol < elements; ++icol) {
+            std::cout << cells[irow][icol] << "|";
         }
         std::cout << std::endl << "-------------------" << std::endl;
     }
 }
+
+
