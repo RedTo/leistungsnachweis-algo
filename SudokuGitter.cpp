@@ -89,11 +89,11 @@ int SudokuGitter::getCell(int row, int column) {
 
 void SudokuGitter::print() {
     for (int irow = 0; irow < getElements(); ++irow) {
-        std::cout << "|";
+        std::cout << " ";
         for (int icol = 0; icol < getElements(); ++icol) {
-            std::cout << cells[irow][icol] << "|";
+            std::cout << cells[irow][icol] << " ";
         }
-        std::cout << std::endl << "--" << std::endl;
+        std::cout << std::endl; // << "--" << std::endl;
     }
 }
 
