@@ -9,8 +9,10 @@ using namespace std;
  * Class for n x n sudoku gatter
  */
 class SudokuGitter {
+private:
     vector<vector<int>> cells;
     const unsigned int elements;
+    const int quadSize;
 
 public:
     explicit SudokuGitter(unsigned int elements);
@@ -20,6 +22,16 @@ public:
     void generateNew();
 
     void print();
+
+private:
+    const unsigned int getElements() { return elements; }
+
+    const int getQuadSize() { return quadSize; }
+
+    void generateCell(int row, int column);
+
+    void printVec(vector<int> vec, string name);
+
 };
 
 #endif //TESTPROJECT_SUDOKUGITTER_H
