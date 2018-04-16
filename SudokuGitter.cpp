@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <random>
+#include <algorithm>
 #include "SudokuGitter.h"
 
 SudokuGitter::SudokuGitter(const unsigned int elements) : elements(elements),
@@ -72,10 +73,19 @@ void SudokuGitter::generateCell(int row, int column) {
         printVec(currCol, "Column");
         printVec(quad, "Quad");
 
+        std::cout << "Row: \n";
+        std::cout << (std::find(currRow.begin(), currRow.end(), tmp) == currRow.end()) << "\n";
+        std::cout << (*currRow.end() == 0) << "\n";
+        std::cout << "Column: \n";
+        std::cout << (std::find(currCol.begin(), currCol.end(), tmp) == currCol.end()) << "\n";
+        std::cout << (*currCol.end() == 0) << "\n";
+        std::cout << "Quad: \n";
+        std::cout << (std::find(quad.begin(), quad.end(), tmp) == quad.end()) << "\n";
+        std::cout << (*quad.end() == 0) << "\n";
 
-        if (std::find(currRow.begin(), currRow.end(), tmp) == currRow.end() && *currRow.end() == 0 &&
-            std::find(currCol.begin(), currCol.end(), tmp) == currCol.end() && *currCol.end() == 0 &&
-            std::find(quad.begin(), quad.end(), tmp) == quad.end() && *quad.end() == 0) {
+        if (std::find(currRow.begin(), currRow.end(), tmp) == currRow.end() && currRow[-1] == 0 &&
+            std::find(currCol.begin(), currCol.end(), tmp) == currCol.end() && currCol[-1] == 0 &&
+            std::find(quad.begin(), quad.end(), tmp) == quad.end() && quad[-1] == 0) {
             cells[row][column] = tmp;
             break;
         }
