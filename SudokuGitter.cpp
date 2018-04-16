@@ -7,13 +7,14 @@
 #include "SudokuGitter.h"
 
 SudokuGitter::SudokuGitter(const unsigned int elements) : elements(elements),
-                                                          cells(elements, vector<int>(elements)),
-                                                          quadSize(static_cast<const int>(std::sqrt(elements))) {
+                                                          cells(elements, vector<unsigned int>(elements)),
+                                                          quadSize(static_cast<const unsigned int>(std::sqrt(
+                                                                  elements))) {
 }
 
 void SudokuGitter::generateNew() {
 
-    vector<int> ziffern(getElements());
+    vector<unsigned int> ziffern(getElements());
 
     for (unsigned int i = 0; i < getElements(); i++)
         ziffern[i] = i + 1;
@@ -34,27 +35,27 @@ void SudokuGitter::generateNew() {
 
 }
 
-void SudokuGitter::generateCell(int row, int column) {
+void SudokuGitter::generateCell(unsigned int row, unsigned int column) {
 
-    vector<int> ziffern(getElements());
+    vector<unsigned int> ziffern(getElements());
     for (unsigned int i = 0; i < getElements(); i++)
         ziffern[i] = i + 1;
     shuffle(begin(ziffern), end(ziffern), std::mt19937(std::random_device()()));
 
-    vector<int> quad(getElements());
-    vector<int> currRow(getElements());
-    vector<int> currCol(getElements());
+    vector<unsigned int> quad(getElements());
+    vector<unsigned int> currRow(getElements());
+    vector<unsigned int> currCol(getElements());
 
     // Row Werte merken
     currRow = cells[row];
     // Column Werte merken
     for (unsigned int tmpRow = 0; tmpRow < getElements(); tmpRow++) {
-        currCol[tmpRow] = getCell(tmpRow, column);
+        currCol[tmpRow] = static_cast<unsigned int>(getCell(tmpRow, column));
     }
 
     // Quad Werte merken
-    unsigned int quadStartRow = (row / getQuadSize()) * getQuadSize();
-    unsigned int quadStartCol = (column / getQuadSize()) * getQuadSize();
+    auto quadStartRow = (row / getQuadSize()) * getQuadSize();
+    auto quadStartCol = (column / getQuadSize()) * getQuadSize();
 
     int indexQuad = 0;
     for (auto tmpRow = quadStartRow; tmpRow < quadStartRow + getQuadSize(); tmpRow++) {
@@ -65,17 +66,18 @@ void SudokuGitter::generateCell(int row, int column) {
     }
 
     for (unsigned int i = 0; i < getElements(); i++) {
-        int tmp = ziffern[i];
+        auto tmp = static_cast<unsigned int>(ziffern[i]);
 
-        std::cout << "###" << row+1 << "," << column+1 << ": Versuch " << tmp << " einzufügen. Umgebung: " << std::endl;
+        std::cout << "###" << row + 1 << "," << column + 1 << ": Versuch " << tmp << " einzufügen. Umgebung: "
+                  << std::endl;
         printVec(currRow, "Row");
         printVec(currCol, "Column");
         printVec(quad, "Quad");
 
 
-        if (std::find(currRow.begin(), currRow.end(), tmp) == currRow.end() && *currRow.end() == 0 &&
-            std::find(currCol.begin(), currCol.end(), tmp) == currCol.end() && *currCol.end() == 0 &&
-            std::find(quad.begin(), quad.end(), tmp) == quad.end() && *quad.end() == 0) {
+        if (std::find(currRow.begin(), currRow.end(), tmp) == currRow.end() && currRow[getElements() - 1] == 0 &&
+            std::find(currCol.begin(), currCol.end(), tmp) == currCol.end() && currCol[getElements() - 1] == 0 &&
+            std::find(quad.begin(), quad.end(), tmp) == quad.end() && quad[getElements() - 1] == 0) {
             cells[row][column] = tmp;
             break;
         }
@@ -83,7 +85,7 @@ void SudokuGitter::generateCell(int row, int column) {
 
 }
 
-int SudokuGitter::getCell(int row, int column) {
+unsigned int SudokuGitter::getCell(unsigned int row, unsigned int column) {
     return cells[row][column];
 }
 
@@ -97,7 +99,7 @@ void SudokuGitter::print() {
     }
 }
 
-void SudokuGitter::printVec(vector<int> vec, string name) {
+void SudokuGitter::printVec(vector<unsigned int> vec, string name) {
     // Print Original Vector
     std::cout << name << ": ";
     for (unsigned int i = 0; i < vec.size(); i++)

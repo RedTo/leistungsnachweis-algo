@@ -10,14 +10,14 @@ using namespace std;
  */
 class SudokuGitter {
 private:
-    vector<vector<int>> cells;
+    vector<vector<unsigned int>> cells;
     const unsigned int elements;
-    const int quadSize;
+    const unsigned int quadSize;
 
 public:
     explicit SudokuGitter(unsigned int elements);
 
-    int getCell(int row, int column);
+    unsigned int getCell(unsigned int row, unsigned int column);
 
     void generateNew();
 
@@ -26,11 +26,11 @@ public:
 private:
     const unsigned int getElements() { return elements; }
 
-    const int getQuadSize() { return quadSize; }
+    const unsigned int getQuadSize() { return quadSize; }
 
-    void generateCell(int row, int column);
+    void generateCell(unsigned int row, unsigned int column);
 
-    void printVec(vector<int> vec, string name);
+    void printVec(vector<unsigned int> vec, string name);
 
 };
 
