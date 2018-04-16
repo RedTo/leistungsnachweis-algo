@@ -15,7 +15,7 @@ void SudokuGitter::generateNew() {
 
     vector<int> ziffern(getElements());
 
-    for (int i = 0; i < getElements(); i++)
+    for (unsigned int i = 0; i < getElements(); i++)
         ziffern[i] = i + 1;
 
     //geordnet erstelle Ziffern in erste Reihe einfügen.
@@ -25,8 +25,8 @@ void SudokuGitter::generateNew() {
     print();
 
     // erste Zeile wird ausgelassen
-    for (int irow = 1; irow < getElements(); irow++) {
-        for (int icol = 0; icol < getElements(); icol++) {
+    for (unsigned int irow = 1; irow < getElements(); irow++) {
+        for (unsigned int icol = 0; icol < getElements(); icol++) {
             generateCell(irow, icol);
         }
         print();
@@ -37,7 +37,7 @@ void SudokuGitter::generateNew() {
 void SudokuGitter::generateCell(int row, int column) {
 
     vector<int> ziffern(getElements());
-    for (int i = 0; i < getElements(); i++)
+    for (unsigned int i = 0; i < getElements(); i++)
         ziffern[i] = i + 1;
     shuffle(begin(ziffern), end(ziffern), std::mt19937(std::random_device()()));
 
@@ -48,23 +48,23 @@ void SudokuGitter::generateCell(int row, int column) {
     // Row Werte merken
     currRow = cells[row];
     // Column Werte merken
-    for (int tmpRow = 0; tmpRow < getElements(); tmpRow++) {
+    for (unsigned int tmpRow = 0; tmpRow < getElements(); tmpRow++) {
         currCol[tmpRow] = getCell(tmpRow, column);
     }
 
     // Quad Werte merken
-    int quadStartRow = (row / getQuadSize()) * getQuadSize();
-    int quadStartCol = (column / getQuadSize()) * getQuadSize();
+    unsigned int quadStartRow = (row / getQuadSize()) * getQuadSize();
+    unsigned int quadStartCol = (column / getQuadSize()) * getQuadSize();
 
     int indexQuad = 0;
-    for (int tmpRow = quadStartRow; tmpRow < quadStartRow + getQuadSize(); tmpRow++) {
-        for (int tmpCol = quadStartCol; tmpCol < quadStartCol + getQuadSize(); tmpCol++) {
+    for (auto tmpRow = quadStartRow; tmpRow < quadStartRow + getQuadSize(); tmpRow++) {
+        for (auto tmpCol = quadStartCol; tmpCol < quadStartCol + getQuadSize(); tmpCol++) {
             quad[indexQuad] = getCell(tmpRow, tmpCol);
             indexQuad++;
         }
     }
 
-    for (int i = 0; i < getElements(); i++) {
+    for (unsigned int i = 0; i < getElements(); i++) {
         int tmp = ziffern[i];
 
         std::cout << "###" << row+1 << "," << column+1 << ": Versuch " << tmp << " einzufügen. Umgebung: " << std::endl;
@@ -88,9 +88,9 @@ int SudokuGitter::getCell(int row, int column) {
 }
 
 void SudokuGitter::print() {
-    for (int irow = 0; irow < getElements(); ++irow) {
+    for (unsigned int irow = 0; irow < getElements(); ++irow) {
         std::cout << " ";
-        for (int icol = 0; icol < getElements(); ++icol) {
+        for (unsigned int icol = 0; icol < getElements(); ++icol) {
             std::cout << cells[irow][icol] << " ";
         }
         std::cout << std::endl; // << "--" << std::endl;
@@ -100,7 +100,7 @@ void SudokuGitter::print() {
 void SudokuGitter::printVec(vector<int> vec, string name) {
     // Print Original Vector
     std::cout << name << ": ";
-    for (int i = 0; i < vec.size(); i++)
+    for (unsigned int i = 0; i < vec.size(); i++)
         std::cout << " " << vec[i];
 
     std::cout << std::endl;
