@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <random>
+#include <algorithm>
 #include "SudokuGitter.h"
 
 SudokuGitter::SudokuGitter(const unsigned int elements) : elements(elements),
