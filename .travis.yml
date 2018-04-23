@@ -1,0 +1,29 @@
+{
+  "os": "linux",
+  "dist": "trusty",
+  "sudo": false,
+  "group": "stable",
+  "addons": {
+    "apt": {
+      "sources": [
+        "ubuntu-toolchain-r-test"
+      ],
+      "packages": [
+        "cmake",
+        "doxygen",
+        "g++-7",
+        "gcc-7"
+      ]
+    }
+  },
+  "script": [
+    "cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug",
+    "cmake --build .build --target all",
+    "cmake --build .build --target doc"
+  ],
+  "language": "cpp",
+  "before_install": [
+    "export CC=/usr/bin/gcc-7",
+    "export CXX=/usr/bin/g++-7"
+  ]
+}
