@@ -5,6 +5,7 @@
 #include <iostream>
 #include <random>
 #include <algorithm>
+#include <set>
 #include "SudokuGitter.h"
 
 SudokuGitter::SudokuGitter(const unsigned int elements) : elements(elements),
@@ -28,15 +29,14 @@ void SudokuGitter::generateNew() {
 
     // erste Zeile wird ausgelassen
     for (unsigned int irow = 1; irow < getElements(); irow++) {
-        for (unsigned int icol = 0; icol < getElements(); icol++) {
-            generateCell(irow, icol);
-        }
+        generateCell(irow, 0);
         print();
+
     }
 
 }
 
-void SudokuGitter::generateCell(unsigned int row, unsigned int column) {
+bool SudokuGitter::generateCell(unsigned int row, unsigned int column) {
 
     vector<unsigned int> ziffern(getElements());
     for (unsigned int i = 0; i < getElements(); i++)
@@ -66,23 +66,54 @@ void SudokuGitter::generateCell(unsigned int row, unsigned int column) {
         }
     }
 
-    for (unsigned int i = 0; i < getElements(); i++) {
-        auto tmp = static_cast<unsigned int>(ziffern[i]);
+    set<int> neighbours = {};
+
+    for (auto val : currRow) {
+        neighbours.insert(val);
+    }
+    for (auto val : currCol) {
+        neighbours.insert(val);
+    }
+    for (auto val : quad) {
+        neighbours.insert(val);
+    }
+
+    set<int> values = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    vector<unsigned int> options;
+    set_difference(values.begin(), values.end(), neighbours.begin(), neighbours.end(),
+                   inserter(options, options.begin()));
+
+    shuffle(begin(options), end(options), std::mt19937(std::random_device()()));
+
+    unsigned int nextRow = row;
+    unsigned int nextCol = column + 1;
+    if (column == getElements()) {
+        nextCol = 0;
+        nextRow++;
+    }
+
+    for (unsigned int i = 0; i < options.size(); i++) {
+        auto tmp = static_cast<unsigned int>(options[i]);
 
         std::cout << "###" << row + 1 << "," << column + 1 << ": Versuch " << tmp << " einzufügen. Umgebung: "
                   << std::endl;
         printVec(currRow, "Row");
         printVec(currCol, "Column");
         printVec(quad, "Quad");
+        printVec(options, "Options");
 
 
-        if (std::find(currRow.begin(), currRow.end(), tmp) == currRow.end() && currRow[getElements() - 1] == 0 &&
-            std::find(currCol.begin(), currCol.end(), tmp) == currCol.end() && currCol[getElements() - 1] == 0 &&
-            std::find(quad.begin(), quad.end(), tmp) == quad.end() && quad[getElements() - 1] == 0) {
-            cells[row][column] = tmp;
-            break;
+        cells[row][column] = tmp;
+
+        if ((column == getElements() - 1) || generateCell(nextRow, nextCol)) {
+            return true;
         }
     }
+
+    //cell bereits 0
+    cells[row][column] = 0;
+    return false;
 
 }
 

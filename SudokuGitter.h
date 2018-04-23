@@ -28,7 +28,7 @@ private:
 
     const unsigned int getQuadSize() { return quadSize; }
 
-    void generateCell(unsigned int row, unsigned int column);
+    bool generateCell(unsigned int row, unsigned int column);
 
     void printVec(vector<unsigned int> vec, string name);
 
