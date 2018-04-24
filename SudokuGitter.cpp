@@ -8,12 +8,19 @@
 #include <set>
 #include "SudokuGitter.h"
 
+/**
+ * Konstruktor um ein Sudoku zu erstellen
+ * @param elements Gibt die Größe des Sudokus an: elements x elements
+ */
 SudokuGitter::SudokuGitter(const unsigned int elements) : elements(elements),
                                                           cells(elements, vector<unsigned int>(elements)),
                                                           quadSize(static_cast<const unsigned int>(std::sqrt(
                                                                   elements))) {
 }
 
+/**
+ * Generiert ein neues vollständiges Sudoku.
+ */
 void SudokuGitter::generateNew() {
 
     vector<unsigned int> ziffern(getElements());
@@ -36,6 +43,12 @@ void SudokuGitter::generateNew() {
 
 }
 
+/**
+ * Generiert valide Werte für die angegebene Zeile und beginnt bei der angegebenen Zelle. Dazu wird Backtracking verwendet.
+ * @param row Zeilenposition
+ * @param column Spaltenposition
+ * @return Gibt an, ob ein gültiger Wert eingetragen werden kann (Backtracking)
+ */
 bool SudokuGitter::generateCell(unsigned int row, unsigned int column) {
 
     vector<unsigned int> ziffern(getElements());
@@ -120,10 +133,19 @@ bool SudokuGitter::generateCell(unsigned int row, unsigned int column) {
 
 }
 
+/**
+ * Gibt den Wert einer Zelle zurück.
+ * @param row Zeilenposition
+ * @param column Spaltenposition
+ * @return Wert der Zelle
+ */
 unsigned int SudokuGitter::getCell(unsigned int row, unsigned int column) {
     return cells[row][column];
 }
 
+/**
+ * Gibt das Sudoku auf der Commandline aus.
+ */
 void SudokuGitter::print() {
     for (unsigned int irow = 0; irow < getElements(); ++irow) {
         std::cout << " ";
@@ -134,6 +156,11 @@ void SudokuGitter::print() {
     }
 }
 
+/**
+ * Gibt einen vector auf der Commandline aus.
+ * @param vec auszugebende Vektor
+ * @param name Name des Vektors
+ */
 void SudokuGitter::printVec(vector<unsigned int> vec, string name) {
     // Print Original Vector
     std::cout << name << ": ";

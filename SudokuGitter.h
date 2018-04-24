@@ -6,7 +6,7 @@
 using namespace std;
 
 /**
- * Class for n x n sudoku gatter
+ * Klasse für ein n x n Sudoku Gitter
  */
 class SudokuGitter {
 private:
