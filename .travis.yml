@@ -1,31 +1,32 @@
 {
   "os": "linux",
   "dist": "trusty",
+  "sudo": false,
   "group": "stable",
   "addons": {
     "apt": {
+      "sources": [
+        "ubuntu-toolchain-r-test"
+      ],
       "packages": [
+        "cmake",
         "doxygen",
-        "cppcheck"
+        "g++-7",
+        "gcc-7"
       ]
     }
   },
-  "before_script": [
-    "mkdir build",
-    "cd build",
-    "cmake ..",
-    "cd .."
-  ],
+  "before script":
   "script": [
-    "cppcheck --error-exitcode=1 --enable=warning,style,performance,portability,unusedFunction --verbose -I lib/include app/ lib/",
-    "cd build",
-    "cmake --build .",
-    "cd ..",
+    "cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug",
+    "cmake --build .build --target all",
     "cd doc",
     "doxygen",
-    "make html",
-    "cd .."
+    "make html"
   ],
-  "compiler": "clang",
   "language": "cpp",
+  "before_install": [
+    "export CC=/usr/bin/gcc-7",
+    "export CXX=/usr/bin/g++-7"
+  ]
 }
