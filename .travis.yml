@@ -10,25 +10,13 @@
       ],
       "packages": [
         "cmake",
-        "doxygen",
-        "g++-7",
-        "gcc-7"
+        "doxygen"
       ]
     }
   },
-  "before script": [
-    "mkdir doc"
-  ]
   "script": [
     "cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug",
-    "cmake --build .build --target all",
-    "cd doc",
-    "doxygen",
-    "make html"
+    "cmake --build .build --target all"
   ],
-  "language": "cpp",
-  "before_install": [
-    "export CC=/usr/bin/gcc-7",
-    "export CXX=/usr/bin/g++-7"
-  ]
+  "language": "cpp"
 }
