@@ -78,7 +78,10 @@ bool SudokuGitter::generateCell(unsigned int row, unsigned int column) {
         neighbours.insert(val);
     }
 
-    set<int> values = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    set<int> values = {};
+
+    for (unsigned int i = 1; i <= getElements(); i++)
+        values.insert(i);
 
     vector<unsigned int> options;
     set_difference(values.begin(), values.end(), neighbours.begin(), neighbours.end(),
