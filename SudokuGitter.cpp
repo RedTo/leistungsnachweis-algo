@@ -14,8 +14,12 @@
  */
 SudokuGitter::SudokuGitter(const unsigned int elements) : elements(elements),
                                                           cells(elements, vector<unsigned int>(elements)),
-                                                          quadSize(static_cast<const unsigned int>(std::sqrt(
-                                                                  elements))) {
+                                                          quadHeight(static_cast<const unsigned int>(std::sqrt(
+                                                                  elements))),
+                                                          quadWidth(
+                                                                  elements / static_cast<const unsigned int>(std::sqrt(
+                                                                          elements))) {
+    cout << getQuadHeight() << " " << getQuadWidth();
 }
 
 /**
@@ -68,12 +72,12 @@ bool SudokuGitter::generateCell(unsigned int row, unsigned int column) {
     }
 
     // Quad Werte merken
-    auto quadStartRow = (row / getQuadSize()) * getQuadSize();
-    auto quadStartCol = (column / getQuadSize()) * getQuadSize();
+    auto quadStartRow = (row / getQuadHeight()) * getQuadHeight();
+    auto quadStartCol = (column / getQuadWidth()) * getQuadWidth();
 
     int indexQuad = 0;
-    for (auto tmpRow = quadStartRow; tmpRow < quadStartRow + getQuadSize(); tmpRow++) {
-        for (auto tmpCol = quadStartCol; tmpCol < quadStartCol + getQuadSize(); tmpCol++) {
+    for (auto tmpRow = quadStartRow; tmpRow < quadStartRow + getQuadHeight(); tmpRow++) {
+        for (auto tmpCol = quadStartCol; tmpCol < quadStartCol + getQuadWidth(); tmpCol++) {
             quad[indexQuad] = getCell(tmpRow, tmpCol);
             indexQuad++;
         }

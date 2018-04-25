@@ -2,7 +2,7 @@
 #include "SudokuGitter.h"
 
 int main() {
-    int elements = 9;
+    int elements = 6;
     SudokuGitter gitter = SudokuGitter(elements);
     gitter.generateNew();
 

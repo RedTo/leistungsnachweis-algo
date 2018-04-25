@@ -12,7 +12,8 @@ class SudokuGitter {
 private:
     vector<vector<unsigned int>> cells;
     const unsigned int elements;
-    const unsigned int quadSize;
+    const unsigned int quadWidth;
+    const unsigned int quadHeight;
 
 public:
     explicit SudokuGitter(unsigned int elements);
@@ -26,7 +27,8 @@ public:
 private:
     const unsigned int getElements() { return elements; }
 
-    const unsigned int getQuadSize() { return quadSize; }
+    const unsigned int getQuadWidth() { return quadWidth; }
+    const unsigned int getQuadHeight() { return quadHeight; }
 
     bool generateCell(unsigned int row, unsigned int column);
 
