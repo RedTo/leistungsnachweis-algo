@@ -19,7 +19,8 @@ SudokuGitter::SudokuGitter(const unsigned int elements) : elements(elements),
                                                           quadWidth(
                                                                   elements / static_cast<const unsigned int>(std::sqrt(
                                                                           elements))) {
-    cout << getQuadHeight() << " " << getQuadWidth();
+    cout << "Create sudoku with: " << elements << " elements." << endl;
+    cout << "quad height: " << getQuadHeight() << " quad width:" << getQuadWidth() << endl;
 }
 
 /**
