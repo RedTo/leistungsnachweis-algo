@@ -1,24 +1,31 @@
-{
-  "os": "linux",
-  "dist": "trusty",
-  "sudo": false,
-  "group": "stable",
-  "addons": {
-    "apt": {
-      "sources": [
-        "ubuntu-toolchain-r-test"
-      ],
-      "packages": [
-        "cmake",
-        "doxygen"
-      ]
-    }
-  },
-  "script": [
-    "cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug",
-    "cmake --build .build --target all",
-    "doxygen",
-    "ls"
-  ],
-  "language": "cpp"
-}
+os: linux
+dist: trusty
+sudo: false
+group: stable
+
+env:
+  global:
+    - GH_REPO_NAME: leistungsnachweis-algo
+    - DOXYFILE: $TRAVIS_BUILD_DIR/Doxyfile
+    - GH_REPO_REF: github.com/ob-algdatii-ss18/leistungsnachweis-algo.git
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - cmake
+      - doxygen
+      - doxygen-doc
+      - doxygen-latex
+      - doxygen-gui
+      - graphviz
+
+script:
+  - cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug
+  - cmake --build .build --target all
+
+after_success:
+  - cd $TRAVIS_BUILD_DIR
+  - chmod +x generateDocumentationAndDeploy.sh
+  - ./generateDocumentationAndDeploy.sh
