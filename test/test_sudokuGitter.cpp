@@ -86,10 +86,10 @@ TEST(SudokuGitter_Test, Sudoku15_No0) {
     ASSERT_EQ(countZeros(gitter, elements), 0);
 }
 
-//TEST(SudokuGitter_Test, Sudoku16_No0) {
-//    const int elements = 16;
-//    SudokuGitter gitter = SudokuGitter(elements);
-//    gitter.generateNew();
-//
-//    ASSERT_EQ(countZeros(gitter, elements), 0);
-//}
+TEST(SudokuGitter_Test, Sudoku16_No0) {
+    const int elements = 16;
+    SudokuGitter gitter = SudokuGitter(elements);
+    gitter.generateNew();
+
+    ASSERT_EQ(countZeros(gitter, elements), 0);
+}
