@@ -24,7 +24,7 @@
     "pip install --user cpp-coveralls"
   ],
   "script": [
-    "cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug --enable-gcov",
+    "cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug",
     "cmake --build .build --target all",
     "cd .build && ctest -VV"
   ],
@@ -34,7 +34,7 @@
     "cd $TRAVIS_BUILD_DIR",
     "chmod +x generateDocumentationAndDeploy.sh",
     "./generateDocumentationAndDeploy.sh",
-    "coveralls --exclude googletest --exclude test --gcov-options '\-lp'"
+    "coveralls --exclude googletest --exclude test --gcov-options"
   ]
 }
 
