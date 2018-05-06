@@ -2,6 +2,7 @@
 #define TESTPROJECT_SUDOKUGITTER_H
 
 #include <vector>
+#include <list>
 
 using namespace std;
 
@@ -14,6 +15,7 @@ private:
     const unsigned int elements;
     const unsigned int quadWidth;
     const unsigned int quadHeight;
+    list<int> errorInRow;
 
 public:
     explicit SudokuGitter(unsigned int elements);
@@ -34,6 +36,9 @@ private:
 
     void printVec(vector<unsigned int> vec, string name);
 
+    unsigned int hadErrorInRow(unsigned int row);
+
+    void zerowRow(unsigned int row);
 };
 
 #endif //TESTPROJECT_SUDOKUGITTER_H

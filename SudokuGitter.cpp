@@ -6,6 +6,7 @@
 #include <random>
 #include <algorithm>
 #include <set>
+#include <list>
 #include "SudokuGitter.h"
 
 /**
@@ -40,10 +41,27 @@ void SudokuGitter::generateNew() {
     print();
 
     // erste Zeile wird ausgelassen
-    for (unsigned int irow = 1; irow < getElements(); irow++) {
-        generateCell(irow, 0);
-        print();
+    unsigned int irow = 1;
+    while (irow < getElements()) {
+        // Bei groeseren sudokus kann es tatsechlich auch mal keine loesung fuer eine Reihe geben -> vorherige Reihe neu machen
+        if (!generateCell(irow, 0)) {
+            // Todo: Reicht es immer nur eine reihe zurueck zu gehen?
+            unsigned int hadErrorsInRow = hadErrorInRow(irow);
+            errorInRow.push_back(irow);
 
+            // Bis zum ruecksprungpunkt 0er einsetzen (aktuelle row ist schon 0)
+            unsigned int jumpBackToRow = irow - 1;
+            while (irow > jumpBackToRow) {
+                irow--;
+                zerowRow(irow);
+            }
+
+            cout << "REDO last row! There is no solution for this row. Errors in this Row: " << hadErrorsInRow + 1 << "\n";
+            print();
+        } else {
+            irow++;
+            print();
+        }
     }
 
 }
@@ -132,10 +150,8 @@ bool SudokuGitter::generateCell(unsigned int row, unsigned int column) {
         }
     }
 
-    //cell bereits 0
     cells[row][column] = 0;
     return false;
-
 }
 
 /**
@@ -162,6 +178,16 @@ void SudokuGitter::print() {
 }
 
 /**
+ * Reihe voller 0er schreiben.
+ * @param row zu beschreibende Reihe
+ */
+void SudokuGitter::zerowRow(unsigned int row) {
+    for (unsigned int icol = 0; icol < getElements(); ++icol) {
+        cells[row][icol] = 0;
+    }
+}
+
+/**
  * Gibt einen vector auf der Commandline aus.
  * @param vec auszugebende Vektor
  * @param name Name des Vektors
@@ -174,6 +200,22 @@ void SudokuGitter::printVec(vector<unsigned int> vec, string name) {
 
     std::cout << std::endl;
 
+}
+
+/**
+ * Suche wie oft ist schon ein fehler in der Zeile aufgetreten
+ * @param row zeile welche geprüft werden soll
+ */
+unsigned int SudokuGitter::hadErrorInRow(unsigned int row) {
+    unsigned int found = 0;
+
+    for (std::list<int>::const_iterator iterator = errorInRow.begin(), end = errorInRow.end();
+         iterator != end; ++iterator) {
+        if (*iterator == row)
+            found++;
+    }
+
+    return found;
 }
 
 
