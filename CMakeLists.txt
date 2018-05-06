@@ -15,5 +15,7 @@ set(SOURCE_FILES SudokuGitter.cpp SudokuGitter.h)
 
 add_executable(sudoku_Test test/testMain.cpp test/test_sudokuGitter.cpp ${SOURCE_FILES} test/test_SudokuGitterColRow.cpp)
 target_link_libraries(sudoku_Test gtest gtest_main)
+add_test(NAME sudoku_Test COMMAND sudoku_Test)
+
 add_executable(sudoku main.cpp ${SOURCE_FILES})
 set_target_properties(sudoku PROPERTIES LINKER_LANGUAGE CXX)
