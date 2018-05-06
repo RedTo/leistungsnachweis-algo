@@ -20,16 +20,21 @@
       ]
     }
   },
+  "before install": [
+    "pip install --user cpp-coveralls"
+  ],
   "script": [
     "cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Debug",
-    "cmake --build .build --target all"
+    "cmake --build .build --target all",
+    "ctest"
   ],
   "language": "cpp",
   "global_env": "GH_REPO_NAME=leistungsnachweis-algo DOXYFILE=$TRAVIS_BUILD_DIR/Doxyfile GH_REPO_REF=github.com/ob-algdatii-ss18/leistungsnachweis-algo.git",
   "after_success": [
     "cd $TRAVIS_BUILD_DIR",
     "chmod +x generateDocumentationAndDeploy.sh",
-    "./generateDocumentationAndDeploy.sh"
+    "./generateDocumentationAndDeploy.sh",
+    "coveralls --root .. --exclude build/CMakeFiles/ --exclude build/googletest/"
   ]
 }
 
