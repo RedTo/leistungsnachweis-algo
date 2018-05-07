@@ -9,6 +9,7 @@
         "ubuntu-toolchain-r-test"
       ],
       "packages": [
+        "g++-6",
         "cmake",
         "doxygen",
         "doxygen-doc",
@@ -22,8 +23,9 @@
     "pip install --user cpp-coveralls"
   ],
   "script": [
-    "cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Coverage",
+    "CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6 cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCOVERAGE=1",
     "cmake --build .build --target all",
+    "./tests",
     "cd .build && ctest -VV"
   ],
   "language": "cpp",
@@ -33,7 +35,7 @@
     "chmod +x generateDocumentationAndDeploy.sh",
     "./generateDocumentationAndDeploy.sh",
     "cd $TRAVIS_BUILD_DIR",
-    "coveralls --exclude googletest --exclude test --exclude .build --exclude code_docs --gcov \"llvm-cov gcov\" --gcov-options '\\-lp'"
+    "coveralls --exclude googletest --exclude test --exclude .build --exclude code_docs"
   ]
 }
 

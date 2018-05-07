@@ -9,6 +9,7 @@ enable_testing()
 
 set(CMAKE_CXX_STANDARD 11 )
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x -lpthread")
+SET(COVERAGE OFF CACHE BOOL "Coverage")
 
 set(SOURCE_FILES SudokuGitter.cpp SudokuGitter.h visual/ClassicSudokuVisualizer.h visual/ClassicSudokuVisualizer.cpp)
 set(TEST_FILES test/test_head.h test/testMain.cpp test/test_SudokuGitterColRow.cpp test/test_SudokuGitter.cpp test/test_SudokuGitterStressTest.cpp test/test_SudokuGitterColRowStressTest.cpp test/test_ClassicSudokuVisualizer.cpp)
@@ -22,7 +23,6 @@ add_executable(sudoku_Test ${SOURCE_FILES} ${TEST_FILES})
 target_link_libraries(sudoku_Test gtest gtest_main)
 add_test(NAME sudoku_Test COMMAND sudoku_Test)
 
-SET(COVERAGE OFF CACHE BOOL "Coverage")
 
 if (COVERAGE)
     target_compile_options(tests PRIVATE --coverage)
