@@ -12,9 +12,14 @@
 \item 
 unsigned int \hyperlink{class_sudoku_gitter_a588e1738f938570014ab104a834f9a89}{get\-Cell} (unsigned int row, unsigned int column)
 \item 
+void \hyperlink{class_sudoku_gitter_aa7fa54638ade311994bd8f6433df8ff0}{set\-Cell} (unsigned int row, unsigned int column, unsigned int value)
+\item 
 void \hyperlink{class_sudoku_gitter_a1cd2a95fea6f56d295fcc4bb11412c2e}{generate\-New} ()
 \item 
 void \hyperlink{class_sudoku_gitter_a771332a8a5eff5e1917538adfb237d0e}{print} ()
+\item 
+\hypertarget{class_sudoku_gitter_ad089a50f3435a3eb025aacab74b8fbed}{\hyperlink{class_sudoku_gitter}{Sudoku\-Gitter} {\bfseries get\-Solvable} ()}\label{class_sudoku_gitter_ad089a50f3435a3eb025aacab74b8fbed}
+
 \end{DoxyCompactItemize}
 
 
@@ -69,7 +74,26 @@ Wert der Zelle
 {}
 \end{DoxyParamCaption}
 )}}\label{class_sudoku_gitter_a771332a8a5eff5e1917538adfb237d0e}
-Gibt das Sudoku auf der Commandline aus. 
+Gibt das Sudoku auf der Commandline aus. \hypertarget{class_sudoku_gitter_aa7fa54638ade311994bd8f6433df8ff0}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!set\-Cell@{set\-Cell}}
+\index{set\-Cell@{set\-Cell}!SudokuGitter@{Sudoku\-Gitter}}
+\subsubsection[{set\-Cell}]{\setlength{\rightskip}{0pt plus 5cm}void Sudoku\-Gitter\-::set\-Cell (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{row, }
+\item[{unsigned int}]{column, }
+\item[{unsigned int}]{value}
+\end{DoxyParamCaption}
+)}}\label{class_sudoku_gitter_aa7fa54638ade311994bd8f6433df8ff0}
+Gibt den Wert einer Zelle zurück. 
+\begin{DoxyParams}{Parameter}
+{\em row} & Zeilenposition \\
+\hline
+{\em column} & Spaltenposition \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Rückgabe}
+Wert der Zelle 
+\end{DoxyReturn}
+
 
 Die Dokumentation für diese Klasse wurde erzeugt aufgrund der Dateien\-:\begin{DoxyCompactItemize}
 \item 
