@@ -1,0 +1,1 @@
+/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/testmisc.dir/testMain.cpp.o CMakeFiles/testmisc.dir/test_sudokuGitter.cpp.o  -o testmisc.exe -Wl,--out-implib,libtestmisc.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -lleistungsnachweis-algo ../googletest/libgtest.a 

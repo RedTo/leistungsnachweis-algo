@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/d/Entwicklung/Studium/AlgoDat2/SudokuGitter.cpp
+iostream
+-
+random
+-
+algorithm
+-
+set
+-
+list
+-
+SudokuGitter.h
+/cygdrive/d/Entwicklung/Studium/AlgoDat2/SudokuGitter.h
+
+/cygdrive/d/Entwicklung/Studium/AlgoDat2/SudokuGitter.h
+vector
+-
+list
+-
+
+/cygdrive/d/Entwicklung/Studium/AlgoDat2/main.cpp
+iostream
+-
+SudokuGitter.h
+/cygdrive/d/Entwicklung/Studium/AlgoDat2/SudokuGitter.h
+

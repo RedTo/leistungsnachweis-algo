@@ -1,0 +1,1 @@
+/usr/bin/c++.exe  -std=gnu++0x -lpthread -g  -Wl,--enable-auto-import CMakeFiles/sudoku.dir/main.cpp.o CMakeFiles/sudoku.dir/SudokuGitter.cpp.o  -o sudoku.exe -Wl,--out-implib,libsudoku.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
