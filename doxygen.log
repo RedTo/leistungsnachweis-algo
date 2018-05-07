@@ -13,11 +13,9 @@ Warning: ignoring unsupported tag `DOCBOOK_PROGRAMLISTING =' at line 1991, file 
 Warning: ignoring unsupported tag `PLANTUML_JAR_PATH      =' at line 2420, file /home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/Doxyfile
 Warning: ignoring unsupported tag `PLANTUML_CFG_FILE      =' at line 2425, file /home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/Doxyfile
 Warning: ignoring unsupported tag `PLANTUML_INCLUDE_PATH  =' at line 2430, file /home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/Doxyfile
-Warning: tag INPUT: input source `${TRAVIS_BUILD_DIR}' does not exist
 warning: The selected output language "german" has not been updated
 since release 1.8.4.  As a result some sentences may appear in English.
 
-warning: source ${TRAVIS_BUILD_DIR} is not a readable file or directory... skipping.
 Notice: Output directory `doxygen_doc' does not exist. I have created it for you.
 Searching for include files...
 Searching for example files...
@@ -27,6 +25,7 @@ Searching for msc files...
 Searching for dia files...
 Searching for files to exclude
 Searching for files to process...
+Searching for files in directory /home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/code_docs
 Reading and parsing tag files
 Parsing files
 Building group list...
