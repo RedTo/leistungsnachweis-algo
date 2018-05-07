@@ -1,11 +1,14 @@
 #include <iostream>
 #include "SudokuGitter.h"
+#include "visual/ClassicSudokuVisualizer.h"
 
 int main() {
-    int elements = 15;
+    int elements = 9;
     SudokuGitter gitter = SudokuGitter(elements);
     gitter.generateNew();
 
+    //disable cout by setting failbit, remove this line or call std::cout.clear()
+    std::cout.setstate(std::ios_base::failbit);
     std::cout << "###### Ende ######" << std::endl;
     gitter.print();
     std::cout << "Zeile 1 Spalte 0: " << gitter.getCell(1, 0) << std::endl;
@@ -20,7 +23,8 @@ int main() {
 
     std::cout << "Anzahl 0: " << countZero << std::endl;
 
-    gitter.getSolvable().print();
+    ClassicSudokuVisualizer visualizer = ClassicSudokuVisualizer(gitter);
+    visualizer.createHTML("output/sudoku.html");
 
     return 0;
 }

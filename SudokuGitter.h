@@ -44,6 +44,8 @@ private:
     unsigned int hadErrorInRow(unsigned int row);
 
     void zerowRow(unsigned int row);
+
+    friend class ClassicSudokuVisualizer;
 };
 
 #endif //TESTPROJECT_SUDOKUGITTER_H
