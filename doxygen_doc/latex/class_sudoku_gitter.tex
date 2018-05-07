@@ -1,0 +1,77 @@
+\hypertarget{class_sudoku_gitter}{\section{Sudoku\-Gitter Klassenreferenz}
+\label{class_sudoku_gitter}\index{Sudoku\-Gitter@{Sudoku\-Gitter}}
+}
+
+
+{\ttfamily \#include $<$Sudoku\-Gitter.\-h$>$}
+
+\subsection*{Öffentliche Methoden}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_sudoku_gitter_ad3443d5846cba4cef8fdfebc46f16c0b}{Sudoku\-Gitter} (unsigned int elements)
+\item 
+unsigned int \hyperlink{class_sudoku_gitter_a588e1738f938570014ab104a834f9a89}{get\-Cell} (unsigned int row, unsigned int column)
+\item 
+void \hyperlink{class_sudoku_gitter_a1cd2a95fea6f56d295fcc4bb11412c2e}{generate\-New} ()
+\item 
+void \hyperlink{class_sudoku_gitter_a771332a8a5eff5e1917538adfb237d0e}{print} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Ausführliche Beschreibung}
+Klasse für ein n x n Sudoku Gitter 
+
+\subsection{Beschreibung der Konstruktoren und Destruktoren}
+\hypertarget{class_sudoku_gitter_ad3443d5846cba4cef8fdfebc46f16c0b}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!Sudoku\-Gitter@{Sudoku\-Gitter}}
+\index{Sudoku\-Gitter@{Sudoku\-Gitter}!SudokuGitter@{Sudoku\-Gitter}}
+\subsubsection[{Sudoku\-Gitter}]{\setlength{\rightskip}{0pt plus 5cm}Sudoku\-Gitter\-::\-Sudoku\-Gitter (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{elements}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_sudoku_gitter_ad3443d5846cba4cef8fdfebc46f16c0b}
+Konstruktor um ein Sudoku zu erstellen 
+\begin{DoxyParams}{Parameter}
+{\em elements} & Gibt die Größe des Sudokus an\-: elements x elements \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Dokumentation der Elementfunktionen}
+\hypertarget{class_sudoku_gitter_a1cd2a95fea6f56d295fcc4bb11412c2e}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!generate\-New@{generate\-New}}
+\index{generate\-New@{generate\-New}!SudokuGitter@{Sudoku\-Gitter}}
+\subsubsection[{generate\-New}]{\setlength{\rightskip}{0pt plus 5cm}void Sudoku\-Gitter\-::generate\-New (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_sudoku_gitter_a1cd2a95fea6f56d295fcc4bb11412c2e}
+Generiert ein neues vollständiges Sudoku. \hypertarget{class_sudoku_gitter_a588e1738f938570014ab104a834f9a89}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!get\-Cell@{get\-Cell}}
+\index{get\-Cell@{get\-Cell}!SudokuGitter@{Sudoku\-Gitter}}
+\subsubsection[{get\-Cell}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Sudoku\-Gitter\-::get\-Cell (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{row, }
+\item[{unsigned int}]{column}
+\end{DoxyParamCaption}
+)}}\label{class_sudoku_gitter_a588e1738f938570014ab104a834f9a89}
+Gibt den Wert einer Zelle zurück. 
+\begin{DoxyParams}{Parameter}
+{\em row} & Zeilenposition \\
+\hline
+{\em column} & Spaltenposition \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Rückgabe}
+Wert der Zelle 
+\end{DoxyReturn}
+\hypertarget{class_sudoku_gitter_a771332a8a5eff5e1917538adfb237d0e}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!print@{print}}
+\index{print@{print}!SudokuGitter@{Sudoku\-Gitter}}
+\subsubsection[{print}]{\setlength{\rightskip}{0pt plus 5cm}void Sudoku\-Gitter\-::print (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_sudoku_gitter_a771332a8a5eff5e1917538adfb237d0e}
+Gibt das Sudoku auf der Commandline aus. 
+
+Die Dokumentation für diese Klasse wurde erzeugt aufgrund der Dateien\-:\begin{DoxyCompactItemize}
+\item 
+/home/travis/build/ob-\/algdatii-\/ss18/leistungsnachweis-\/algo/Sudoku\-Gitter.\-h\item 
+/home/travis/build/ob-\/algdatii-\/ss18/leistungsnachweis-\/algo/Sudoku\-Gitter.\-cpp\end{DoxyCompactItemize}
