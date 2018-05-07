@@ -40,10 +40,10 @@ TEST(SudokuGitter_ColRow_StressTest_Test, Sudoku12_ColRow_Multiple) {
     buildAndAssert_Elements_Multiple(size);
 }
 
-TEST(SudokuGitter_ColRow_StressTest_Test, Sudoku15_ColRow_Multiple) {
-    constexpr unsigned int size = 15;
-    buildAndAssert_Elements_Multiple(size);
-}
+//TEST(SudokuGitter_ColRow_StressTest_Test, Sudoku15_ColRow_Multiple) {
+//    constexpr unsigned int size = 15;
+//    buildAndAssert_Elements_Multiple(size);
+//}
 
 //TEST(SudokuGitter_ColRow_StressTest_Test, Sudoku16_ColRow_Multiple) {
 //    constexpr unsigned int size = 16;

@@ -40,10 +40,10 @@ TEST(SudokuGitterStressTest_Test, Sudoku12_No0_Multiple) {
     buildAndAssert_NoZero_Multiple(elements);
 }
 
-TEST(SudokuGitterStressTest_Test, Sudoku15_No0_Multiple) {
-    const int elements = 15;
-    buildAndAssert_NoZero_Multiple(elements);
-}
+//TEST(SudokuGitterStressTest_Test, Sudoku15_No0_Multiple) {
+//    const int elements = 15;
+//    buildAndAssert_NoZero_Multiple(elements);
+//}
 
 //TEST(SudokuGitterStressTest_Test, Sudoku16_No0_Multiple) {
 //    const int elements = 16;
