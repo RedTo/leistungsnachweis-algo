@@ -6,6 +6,7 @@
 #include <unordered_set>
 #include "gtest/gtest.h"
 #include "../SudokuGitter.h"
+#include "../visual/ClassicSudokuVisualizer.h"
 
 namespace {
     static bool checkRows(SudokuGitter gitter, const unsigned int size) {
@@ -107,6 +108,15 @@ namespace {
         for (unsigned int run = 0; run < RUNS; run++) {
             buildAndAssert_Elements(elements);
         }
+    }
+
+    static void startVisualizer(int size){
+        SudokuGitter gitter = SudokuGitter(size);
+        gitter.generateNew();
+        SudokuGitter solvable = gitter.getSolvable();
+
+        ClassicSudokuVisualizer visualizer = ClassicSudokuVisualizer(gitter);
+        visualizer.createHTML("../output/sudoku" + std::to_string(size) +  ".html");
     }
 }
 
