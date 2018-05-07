@@ -56,7 +56,8 @@ void SudokuGitter::generateNew() {
                 zerowRow(irow);
             }
 
-            cout << "REDO last row! There is no solution for this row. Errors in this Row: " << hadErrorsInRow + 1 << "\n";
+            cout << "REDO last row! There is no solution for this row. Errors in this Row: " << hadErrorsInRow + 1
+                 << "\n";
             print();
         } else {
             irow++;
@@ -165,6 +166,16 @@ unsigned int SudokuGitter::getCell(unsigned int row, unsigned int column) {
 }
 
 /**
+ * Gibt den Wert einer Zelle zurück.
+ * @param row Zeilenposition
+ * @param column Spaltenposition
+ * @return Wert der Zelle
+ */
+void SudokuGitter::setCell(unsigned int row, unsigned int column, unsigned int value) {
+    cells[row][column] = value;
+}
+
+/**
  * Gibt das Sudoku auf der Commandline aus.
  */
 void SudokuGitter::print() {
@@ -216,6 +227,32 @@ unsigned int SudokuGitter::hadErrorInRow(unsigned int row) {
     }
 
     return found;
+}
+
+SudokuGitter SudokuGitter::getSolvable() {
+    SudokuGitter solvable = SudokuGitter(getElements());
+
+    int globalElements = getElements() * getElements();
+
+    vector<unsigned int> permutation(globalElements);
+
+    for (int i = 0; i < globalElements; i++) {
+        if (i < globalElements * 0.33)
+            permutation[i] = 1;
+        else
+            permutation[i] = 0;
+    }
+
+    shuffle(begin(permutation), end(permutation), std::mt19937(std::random_device()()));
+
+    for (unsigned int row = 0; row < getElements(); row++) {
+        for (unsigned int col = 0; col < getElements(); col++) {
+            if (permutation[row * getElements() + col] == 1)
+                solvable.setCell(row, col, getCell(row, col));
+        }
+    }
+
+    return solvable;
 }
 
 

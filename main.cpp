@@ -2,7 +2,7 @@
 #include "SudokuGitter.h"
 
 int main() {
-    int elements = 9;
+    int elements = 15;
     SudokuGitter gitter = SudokuGitter(elements);
     gitter.generateNew();
 
@@ -18,7 +18,9 @@ int main() {
         }
     }
 
-    std::cout << "Anzahl 0: " << countZero;
+    std::cout << "Anzahl 0: " << countZero << std::endl;
+
+    gitter.getSolvable().print();
 
     return 0;
 }
