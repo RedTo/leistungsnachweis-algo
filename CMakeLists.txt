@@ -13,7 +13,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x -lpthread") # #-std=c++11")
 
 set(SOURCE_FILES SudokuGitter.cpp SudokuGitter.h)
 
-add_executable(sudoku_Test test/testMain.cpp test/test_sudokuGitter.cpp ${SOURCE_FILES} test/test_SudokuGitterColRow.cpp)
+add_executable(sudoku_Test test/testMain.cpp ${SOURCE_FILES} test/test_SudokuGitterColRow.cpp test/test_sudokuGitter.cpp test/test_sudokuGitterStressTest.cpp)
 target_link_libraries(sudoku_Test gtest gtest_main)
 add_test(NAME sudoku_Test COMMAND sudoku_Test)
 
