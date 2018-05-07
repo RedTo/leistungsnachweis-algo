@@ -86,6 +86,7 @@ if [ -d "doxygen_doc/html" ] && [ -f "doxygen_doc/html/index.html" ]; then
     # GitHub is smart enough to know which files have changed and which files have
     # stayed the same and will only update the changed files.
     git add --all
+    git add ../output/
 
     # Commit the added files with a title and description containing the Travis CI
     # build number and the GitHub commit reference that issued this build.
