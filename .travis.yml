@@ -33,7 +33,7 @@
     "chmod +x generateDocumentationAndDeploy.sh",
     "./generateDocumentationAndDeploy.sh",
     "cd $TRAVIS_BUILD_DIR",
-    "coveralls --exclude googletest --exclude test"
+    "coveralls --exclude googletest --exclude test --exclude .build --exclude code_docs"
   ]
 }
 
