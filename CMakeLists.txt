@@ -22,5 +22,12 @@ add_executable(sudoku_Test ${SOURCE_FILES} ${TEST_FILES})
 target_link_libraries(sudoku_Test gtest gtest_main)
 add_test(NAME sudoku_Test COMMAND sudoku_Test)
 
+SET(COVERAGE OFF CACHE BOOL "Coverage")
+
+if (COVERAGE)
+    target_compile_options(tests PRIVATE --coverage)
+    target_link_libraries(tests PRIVATE --coverage)
+endif()
+
 #add_executable(sudoku_visulizer ${SOURCE_FILLES} ${VISUAL_FILES})
 #set_target_properties(sudoku_visulizer PROPERTIES LINKER_LANGUAGE CXX)
