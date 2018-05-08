@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <set>
 #include <list>
+#include <math.h>
 #include "SudokuGitter.h"
 
 /**
@@ -14,7 +15,7 @@
  * @param elements Gibt die Größe des Sudokus an: elements x elements
  */
 SudokuGitter::SudokuGitter(const unsigned int elements) : elements(elements),
-                                                          cells(elements, vector<unsigned int>(elements)),
+                                                          cells(elements, vector<cell>(elements)),
                                                           quadHeight(static_cast<const unsigned int>(std::sqrt(
                                                                   elements))),
                                                           quadWidth(
@@ -29,10 +30,10 @@ SudokuGitter::SudokuGitter(const unsigned int elements) : elements(elements),
  */
 void SudokuGitter::generateNew() {
 
-    vector<unsigned int> ziffern(getElements());
+    vector<cell> ziffern(getElements());
 
     for (unsigned int i = 0; i < getElements(); i++)
-        ziffern[i] = i + 1;
+        ziffern[i] = cell(i + 1, true);
 
     //geordnet erstelle Ziffern in erste Reihe einfügen.
     cells[0] = ziffern;
@@ -60,6 +61,9 @@ void SudokuGitter::generateNew() {
                  << "\n";
             print();
         } else {
+            for (int i = 0; i < getElements(); ++i) {
+                cells[irow][i].isStatic = true;
+            }
             irow++;
             print();
         }
@@ -74,21 +78,20 @@ void SudokuGitter::generateNew() {
  * @return Gibt an, ob ein gültiger Wert eingetragen werden kann (Backtracking)
  */
 bool SudokuGitter::generateCell(unsigned int row, unsigned int column) {
-
-    vector<unsigned int> ziffern(getElements());
+    vector<SudokuGitter::cell> ziffern(getElements());
     for (unsigned int i = 0; i < getElements(); i++)
-        ziffern[i] = i + 1;
+        ziffern[i] = cell(i + 1);
     shuffle(begin(ziffern), end(ziffern), std::mt19937(std::random_device()()));
 
-    vector<unsigned int> quad(getElements());
-    vector<unsigned int> currRow(getElements());
-    vector<unsigned int> currCol(getElements());
+    vector<SudokuGitter::cell> quad(getElements());
+    vector<SudokuGitter::cell> currRow(getElements());
+    vector<SudokuGitter::cell> currCol(getElements());
 
     // Row Werte merken
     currRow = cells[row];
     // Column Werte merken
     for (unsigned int tmpRow = 0; tmpRow < getElements(); tmpRow++) {
-        currCol[tmpRow] = static_cast<unsigned int>(getCell(tmpRow, column));
+        currCol[tmpRow] = getCell(tmpRow, column);
     }
 
     // Quad Werte merken
@@ -106,13 +109,13 @@ bool SudokuGitter::generateCell(unsigned int row, unsigned int column) {
     set<int> neighbours = {};
 
     for (auto val : currRow) {
-        neighbours.insert(val);
+        neighbours.insert(val.value);
     }
     for (auto val : currCol) {
-        neighbours.insert(val);
+        neighbours.insert(val.value);
     }
     for (auto val : quad) {
-        neighbours.insert(val);
+        neighbours.insert(val.value);
     }
 
     set<int> values = {};
@@ -144,14 +147,14 @@ bool SudokuGitter::generateCell(unsigned int row, unsigned int column) {
         printVec(options, "Options");
 
 
-        cells[row][column] = tmp;
+        cells[row][column] = cell(tmp);
 
         if ((column == getElements() - 1) || generateCell(nextRow, nextCol)) {
             return true;
         }
     }
 
-    cells[row][column] = 0;
+    cells[row][column] = cell(0);
     return false;
 }
 
@@ -161,7 +164,7 @@ bool SudokuGitter::generateCell(unsigned int row, unsigned int column) {
  * @param column Spaltenposition
  * @return Wert der Zelle
  */
-unsigned int SudokuGitter::getCell(unsigned int row, unsigned int column) {
+SudokuGitter::cell SudokuGitter::getCell(unsigned int row, unsigned int column) {
     return cells[row][column];
 }
 
@@ -171,7 +174,7 @@ unsigned int SudokuGitter::getCell(unsigned int row, unsigned int column) {
  * @param column Spaltenposition
  * @return Wert der Zelle
  */
-void SudokuGitter::setCell(unsigned int row, unsigned int column, unsigned int value) {
+void SudokuGitter::setCell(unsigned int row, unsigned int column, cell value) {
     cells[row][column] = value;
 }
 
@@ -182,7 +185,7 @@ void SudokuGitter::print() {
     for (unsigned int irow = 0; irow < getElements(); ++irow) {
         std::cout << " ";
         for (unsigned int icol = 0; icol < getElements(); ++icol) {
-            std::cout << cells[irow][icol] << " ";
+            std::cout << cells[irow][icol].value << " ";
         }
         std::cout << std::endl; // << "--" << std::endl;
     }
@@ -194,8 +197,23 @@ void SudokuGitter::print() {
  */
 void SudokuGitter::zerowRow(unsigned int row) {
     for (unsigned int icol = 0; icol < getElements(); ++icol) {
-        cells[row][icol] = 0;
+        cells[row][icol].value = 0;
     }
+}
+
+/**
+ * Gibt einen vector auf der Commandline aus.
+ * @param vec auszugebende Vektor
+ * @param name Name des Vektors
+ */
+void SudokuGitter::printVec(vector<cell> vec, string name) {
+    // Print Original Vector
+    std::cout << name << ": ";
+    for (unsigned int i = 0; i < vec.size(); i++)
+        std::cout << " " << vec[i].value;
+
+    std::cout << std::endl;
+
 }
 
 /**
@@ -237,7 +255,7 @@ SudokuGitter SudokuGitter::getSolvable() {
     vector<unsigned int> permutation(globalElements);
 
     for (int i = 0; i < globalElements; i++) {
-        if (i < globalElements * 0.33)
+        if (i < floor(globalElements * 0.35))
             permutation[i] = 1;
         else
             permutation[i] = 0;
@@ -248,7 +266,7 @@ SudokuGitter SudokuGitter::getSolvable() {
     for (unsigned int row = 0; row < getElements(); row++) {
         for (unsigned int col = 0; col < getElements(); col++) {
             if (permutation[row * getElements() + col] == 1)
-                solvable.setCell(row, col, getCell(row, col));
+                solvable.setCell(row, col, cell(getCell(row, col), true));
         }
     }
 
