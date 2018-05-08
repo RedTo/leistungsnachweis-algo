@@ -11,7 +11,7 @@
     <title>Landing Page - Sudokugenerator</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
@@ -27,7 +27,28 @@
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
         <a class="navbar-brand" href="#">Sudokugenerator</a>
+		<a href="https://github.com/ob-algdatii-ss18/leistungsnachweis-algo" target="_blank">
+            <i class="fab fa-github" style="font-size: 25px; color: black;"></i>
+		</a>
+		<a href="https://travis-ci.org/ob-algdatii-ss18/leistungsnachweis-algo" title="Travis" target="_blank"><image src="https://travis-ci.org/ob-algdatii-ss18/leistungsnachweis-algo.svg?branch=master"/></a>
+		<a href="https://coveralls.io/repos/github/ob-algdatii-ss18/leistungsnachweis-algo" title="Coveralls" target="_blank"><image src="https://coveralls.io/repos/github/ob-algdatii-ss18/leistungsnachweis-algo/badge.svg?branch=master"/></a>
         <a class="btn btn-primary" href="doxygen_doc/html/index.html"><i class="fas fa-book"></i> Straight to the docs!</a>
+		<div class="dropdown">
+		  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><i class="fas fa-pencil-alt"></i> Try it!
+		  <span class="caret"></span></button>
+		  <ul class="dropdown-menu">
+			<li><a href="output/sudoku1.html" target="_blank">1x1 Sudoku</a></li>
+			<li><a href="output/sudoku2.html" target="_blank">2x2 Sudoku</a></li>
+			<li><a href="output/sudoku3.html" target="_blank">3x3 Sudoku</a></li>
+			<li><a href="output/sudoku4.html" target="_blank">4x4 Sudoku</a></li>
+			<li><a href="output/sudoku6.html" target="_blank">6x6 Sudoku</a></li>
+			<li><a href="output/sudoku8.html" target="_blank">8x8 Sudoku</a></li>
+			<li><a href="output/sudoku9.html" target="_blank">9x9 Sudoku</a></li>
+			<li><a href="output/sudoku12.html" target="_blank">12x12 Sudoku</a></li>
+			<li><a href="output/sudoku15.html" target="_blank">15x15 Sudoku</a></li>
+			<li><a href="output/sudoku16.html" target="_blank">16x16 Sudoku</a></li>
+		  </ul>
+		</div>
       </div>
     </nav>
 
@@ -79,7 +100,7 @@
         </div>
       </div>
     </section>
-
+	
     <!-- Image Showcases -->
     <section class="showcase">
       <div class="container-fluid p-0">
@@ -89,7 +110,7 @@
           <div class="col-lg-6 order-lg-1 my-auto showcase-text">
             <h2>Classic Sudoku</h2>
             <p class="lead mb-0">The mostly played Sudoku is the 9x9 Sudoku. No problem for our algorithm. We can create these classic Sudokus also with a much bigger grid.</p>
-          </div>
+		  </div>
         </div>
         <div class="row no-gutters">
           <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-2.jpg');"></div>
@@ -198,6 +219,7 @@
         </div>
       </div>
     </footer>
-  </body>
-
+	</body>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
 </html>
