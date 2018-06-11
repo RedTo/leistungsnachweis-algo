@@ -33,7 +33,7 @@
     "chmod +x generateDocumentationAndDeploy.sh",
     "./generateDocumentationAndDeploy.sh",
     "ls -ahl",
-    "coveralls --exclude googletest --exclude .build --exclude code_docs"
+    "coveralls"
   ]
 }
 
