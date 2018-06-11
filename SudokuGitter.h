@@ -36,16 +36,25 @@ public:
     };
 
 
+    struct row {
+        int index = 0;
+        long numberCount = 0;
+    };
+
 private:
     vector<vector<cell>> cells;
     const unsigned int elements;
     const unsigned int quadWidth;
     const unsigned int quadHeight;
     list<int> errorInRow;
+    bool isDebug = false;
+    float difficulty = 0.35;
 
 public:
 
     explicit SudokuGitter(unsigned int elements);
+
+    void setDifficulty(float value);
 
     cell getCell(unsigned int row, unsigned int column);
 
@@ -57,13 +66,19 @@ public:
 
     SudokuGitter getSolvable();
 
+    const unsigned int getElements() { return elements; }
+
+    static void solve(SudokuGitter gitter);
 
 private:
-    const unsigned int getElements() { return elements; }
 
     const unsigned int getQuadWidth() { return quadWidth; }
 
     const unsigned int getQuadHeight() { return quadHeight; }
+
+    vector<cell> getRow(int row);
+
+    vector<cell> getColumn(int column);
 
     bool generateCell(unsigned int row, unsigned int column);
 
@@ -76,6 +91,7 @@ private:
     void zerowRow(unsigned int row);
 
     friend class ClassicSudokuVisualizer;
+
 };
 
 #endif //TESTPROJECT_SUDOKUGITTER_H
