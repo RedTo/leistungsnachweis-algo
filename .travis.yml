@@ -24,11 +24,14 @@
   "script": [
     "cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Coverage",
     "cmake --build .build --target all",
-    "mkdir output && ./sudoku_Test"
+    "cd .build && mkdir output && ctest -VV",
+    "./test",
+    "cd .build ./test"
   ],
   "language": "cpp",
   "global_env": "GH_REPO_NAME=leistungsnachweis-algo DOXYFILE=$TRAVIS_BUILD_DIR/Doxyfile GH_REPO_REF=github.com/ob-algdatii-ss18/leistungsnachweis-algo.git",
   "after_success": [
+    "ls -ahl",
     "coveralls --root . --exclude \".*gtest.*\" --exclude \".*CMakeFiles.*\"",
     "cd $TRAVIS_BUILD_DIR",
     "chmod +x generateDocumentationAndDeploy.sh",
