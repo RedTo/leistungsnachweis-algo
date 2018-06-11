@@ -12,7 +12,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++0x -lpthread")
 SET(COVERAGE OFF CACHE BOOL "Coverage")
 
 set(SOURCE_FILES SudokuGitter.cpp SudokuGitter.h visual/ClassicSudokuVisualizer.h visual/ClassicSudokuVisualizer.cpp)
-set(TEST_FILES test/test_head.h test/testMain.cpp test/test_SudokuGitterColRow.cpp test/test_SudokuGitterSolvable.cpp test/test_SudokuGitter.cpp test/test_SudokuGitterStressTest.cpp test/test_SudokuGitterColRowStressTest.cpp test/test_ClassicSudokuVisualizer.cpp)
+set(TEST_FILES test/test_head.h test/testMain.cpp test/test_SudokuGitterColRow.cpp test/test_SudokuGitter.cpp test/test_SudokuGitterStressTest.cpp test/test_SudokuGitterColRowStressTest.cpp test/test_ClassicSudokuVisualizer.cpp)
 #set(VISUAL_FILES )
 
 

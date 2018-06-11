@@ -4,7 +4,6 @@
 #include <random>
 #include <set>
 #include <unordered_set>
-#include <math.h>
 #include "gtest/gtest.h"
 #include "../SudokuGitter.h"
 #include "../visual/ClassicSudokuVisualizer.h"
@@ -12,11 +11,11 @@
 namespace {
     static bool checkRows(SudokuGitter gitter, const unsigned int size) {
         for (unsigned int row = 0; row < size; row++) {
-            std::set<unsigned int> elements;
+            std::set<int> elements;
             for (unsigned int column = 0; column < size; column++) {
-                SudokuGitter::cell item = gitter.getCell(row, column);
-                if (item.value != 0 && item.isStatic)
-                    elements.insert(item.value);
+                auto item = gitter.getCell(row, column);
+                if (item != 0)
+                    elements.insert(item);
             }
 
             if (elements.size() != size) {
@@ -32,8 +31,8 @@ namespace {
             std::set<int> elements;
             for (unsigned int row = 0; row < size; row++) {
                 auto item = gitter.getCell(row, column);
-                if (item.value != 0 && item.isStatic)
-                    elements.insert(item.value);
+                if (item != 0)
+                    elements.insert(item);
             }
 
             if (elements.size() != size) {
@@ -57,8 +56,8 @@ namespace {
             for (auto tmpRow = quadStartRow; tmpRow < quadStartRow + quadHeight; tmpRow++) {
                 for (auto tmpCol = quadStartColumn; tmpCol < quadStartColumn + quadWidth; tmpCol++) {
                     auto item = gitter.getCell(tmpRow, tmpCol);
-                    if (item.value != 0)
-                        elements.insert(item.value);
+                    if (item != 0)
+                        elements.insert(item);
                 }
             }
 
@@ -74,7 +73,7 @@ namespace {
         int countZero = 0;
         for (unsigned int row = 0; row < size; row++) {
             for (unsigned int col = 0; col < size; col++) {
-                if (gitter.getCell(row, col).value == 0)
+                if (gitter.getCell(row, col) == 0)
                     countZero++;
             }
         }
@@ -97,14 +96,6 @@ namespace {
         ASSERT_TRUE(checkQuad(gitter, size));
     }
 
-    static void buildAndAssert_Solvable(int size) {
-        SudokuGitter gitter = SudokuGitter(size);
-        gitter.generateNew();
-        SudokuGitter solvable = gitter.getSolvable();
-
-        ASSERT_EQ(countZeros(solvable, size), ceil((size * size) * 0.65));
-    }
-
     const unsigned int RUNS = 10;
 
     static void buildAndAssert_NoZero_Multiple(int elements) {
@@ -119,13 +110,13 @@ namespace {
         }
     }
 
-    static void startVisualizer(int size) {
+    static void startVisualizer(int size){
         SudokuGitter gitter = SudokuGitter(size);
         gitter.generateNew();
         SudokuGitter solvable = gitter.getSolvable();
 
         ClassicSudokuVisualizer visualizer = ClassicSudokuVisualizer(gitter);
-        visualizer.createHTML("output/sudoku" + std::to_string(size) + ".html");
+        visualizer.createHTML("output/sudoku" + std::to_string(size) +  ".html");
     }
 }
 
