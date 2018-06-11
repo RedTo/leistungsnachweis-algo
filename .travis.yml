@@ -9,12 +9,7 @@
         "ubuntu-toolchain-r-test"
       ],
       "packages": [
-        "cmake",
-        "doxygen",
-        "doxygen-doc",
-        "doxygen-latex",
-        "doxygen-gui",
-        "graphviz"
+        "cmake"
       ]
     }
   },
@@ -24,18 +19,16 @@
   "script": [
     "cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Coverage",
     "cmake --build .build --target all",
-    "cd .build && mkdir output && ctest -VV",
-    "./test",
-    "cd .build ./test"
+    "cd .build && mkdir output && ctest -VV"
   ],
   "language": "cpp",
   "global_env": "GH_REPO_NAME=leistungsnachweis-algo DOXYFILE=$TRAVIS_BUILD_DIR/Doxyfile GH_REPO_REF=github.com/ob-algdatii-ss18/leistungsnachweis-algo.git",
   "after_success": [
     "ls -ahl",
-    "coveralls --root . --exclude \".*gtest.*\" --exclude \".*CMakeFiles.*\"",
-    "cd $TRAVIS_BUILD_DIR",
-    "chmod +x generateDocumentationAndDeploy.sh",
-    "./generateDocumentationAndDeploy.sh"
+    "coveralls --root .",
+    "cd ..",
+    "ls -ahl",
+    "coveralls --root ."
   ]
 }
 
