@@ -26,6 +26,81 @@ SudokuGitter::SudokuGitter(const unsigned int elements) : elements(elements),
 }
 
 /**
+ * Generiere ein neues vollständiges großes Sudoku (5 an den Ecken miteinander verbundene Sudokus).
+ */
+void SudokuGitter::generateNewBig() {
+    int size = 9;
+
+    SudokuGitter* mitte = new SudokuGitter(size);
+    mitte->generateNew();
+
+    SudokuGitter* linksUnten = new SudokuGitter(size);
+    for (int outer = mitte->cells.size() * mitte.)
+
+}
+
+/**
+ * Belege ein bestimmtes quad mit festen werten vor
+ */
+void SudokuGitter::belegeQuadVor() {
+
+}
+
+/**
+ * Get Quad from position
+ * @param i
+ */
+vector<vector<SudokuGitter::cell>>* SudokuGitter::getQuad(const unsigned int h, const unsigned w) {
+    vector<vector<SudokuGitter::cell>>* quadCells =
+}
+
+/**
+ * Sodokue lösen, welches schon eine bestimmte Anzahl an festen Werten hat.
+ * @param gitter
+ */
+void SudokuGitter::solveBigOne(SudokuGitter toSolve) {
+    vector<vector<cell>> gitterToSolve = toSolve.cells;
+
+    //
+    for (int i = 0; i < gitterToSolve.size(); ++i) {
+        vector<cell> tmpRow = gitter.getRow(i);
+        row current = row();
+        current.index = i;
+        current.numberCount = count_if(tmpRow.begin(), tmpRow.end(), isNotEmpty);
+        rows.push_back(current);
+    }
+
+    std::sort(rows.begin(), rows.end(), myfunction);
+
+
+    while (!rows.empty()) {
+        row tmp = rows.back();
+        rows.pop_back();
+        int irow = tmp.index;
+        while (!gitter.generateCell(irow, 0)) {
+
+//        } else {
+//            // Todo: Reicht es immer nur eine reihe zurueck zu gehen?
+//            unsigned int hadErrorsInRow = gitter.hadErrorInRow(irow);
+//            gitter.errorInRow.push_back(irow);
+//
+//            // Bis zum ruecksprungpunkt 0er einsetzen (aktuelle row ist schon 0)
+//            unsigned int jumpBackToRow = irow - 1;
+//            while (irow > jumpBackToRow) {
+//                irow--;
+//                gitter.zerowRow(irow);
+//            }
+//
+//            cout << "REDO last row! There is no solution for this row. Errors in this Row: " << hadErrorsInRow + 1
+//                 << "\n";
+//            gitter.print();
+        }
+    }
+    gitter.print();
+
+}
+
+/**
  * Generiert ein neues vollständiges Sudoku.
  */
 void SudokuGitter::generateNew() {
@@ -175,7 +250,10 @@ SudokuGitter::cell SudokuGitter::getCell(unsigned int row, unsigned int column) 
  * @return Wert der Zelle
  */
 void SudokuGitter::setCell(unsigned int row, unsigned int column, cell value) {
-    cells[row][column] = value;
+    if (!cells[row][column].isStatic)
+        cells[row][column] = value;
+    else
+        cout << "\033[1;31m Tried to set protected cell! \033[0m\n";
 }
 
 /**
@@ -247,6 +325,10 @@ unsigned int SudokuGitter::hadErrorInRow(unsigned int row) {
     return found;
 }
 
+/**
+ * Raus löschen von Zahlen aus einem kompletten Sudoku.
+ * @return
+ */
 SudokuGitter SudokuGitter::getSolvable() {
     SudokuGitter solvable = SudokuGitter(getElements());
 
