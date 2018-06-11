@@ -34,7 +34,6 @@
     "./generateDocumentationAndDeploy.sh",
     "ls -ahl",
     "coveralls --exclude .build/CMakeFiles/ --exclude .build/gtest/ --exclude gtest/ --exclude .build/main/ --gcov 'llvm-cov gcov' --gcov-options '\-lp'"
-"
   ]
 }
 
