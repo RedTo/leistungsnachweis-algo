@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sudokugitter',['SudokuGitter',['../class_sudoku_gitter.html',1,'']]]
+  ['cell',['cell',['../structcell.html',1,'']]]
 ];
