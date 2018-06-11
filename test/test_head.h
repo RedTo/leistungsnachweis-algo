@@ -102,7 +102,7 @@ namespace {
         gitter.generateNew();
         SudokuGitter solvable = gitter.getSolvable();
 
-        ASSERT_EQ(countZeros(solvable, size), ceil((size * size) * 0.65));
+        ASSERT_EQ(countZeros(solvable, size), ceil((size * size) * (1 - 0.35)));
     }
 
     const unsigned int RUNS = 10;
