@@ -3,7 +3,7 @@
 #include "visual/ClassicSudokuVisualizer.h"
 
 int main() {
-    int elements = 6;
+    int elements = 9;
     SudokuGitter gitter = SudokuGitter(elements);
     gitter.generateNew();
 
@@ -22,12 +22,12 @@ int main() {
     }
 
     std::cout << "Anzahl 0: " << countZero << std::endl;
-    gitter.setDifficulty(0.8);
+    gitter.setDifficulty(0.6);
     SudokuGitter solvable = gitter.getSolvable();
     std::cout << "##### Solvable #######" << std::endl;
     solvable.print();
     std::cout << "##### solved Sudoku #######" << std::endl;
-    SudokuGitter::solve(solvable);
+    //SudokuGitter::solve(solvable);
 
 
     ClassicSudokuVisualizer visualizer = ClassicSudokuVisualizer(gitter);
