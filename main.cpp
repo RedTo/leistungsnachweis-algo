@@ -23,7 +23,7 @@ int main() {
     }
 
     std::cout << "Anzahl 0: " << countZero << std::endl;
-    gitter.setDifficulty(0.6);
+    //gitter.setDifficulty(0.6);
     SudokuGitter solvable = gitter.getSolvable();
     std::cout << "##### Solvable #######" << std::endl;
     solvable.print();
