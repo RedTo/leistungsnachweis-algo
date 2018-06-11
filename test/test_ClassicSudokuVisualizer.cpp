@@ -31,7 +31,7 @@ TEST(ClassicSudokuVisualizer_Test, Sudoku9_HTML) {
 TEST(ClassicSudokuVisualizer_Test, Sudoku12_HTML) {
     const int elements = 12;
     startVisualizer(elements);
-}
+}/*
 TEST(ClassicSudokuVisualizer_Test, Sudoku15_HTML) {
     const int elements = 15;
     startVisualizer(elements);
@@ -39,5 +39,5 @@ TEST(ClassicSudokuVisualizer_Test, Sudoku15_HTML) {
 TEST(ClassicSudokuVisualizer_Test, Sudoku16_HTML) {
     const int elements = 16;
     startVisualizer(elements);
-}
+}*/
 
