@@ -137,4 +137,32 @@ SudokuGitter SudokuGitter::getSolvable() {
     return solvable;
 }
 
+/**
+ * Gibt einen vector auf der Commandline aus.
+ * @param vec auszugebende Vektor
+ * @param name Name des Vektors
+ */
+void SudokuGitter::printCellVec(vector<cell> vec, string name) {
+    // Print Original Vector
+    std::cout << name << ": ";
+    for (unsigned int i = 0; i < vec.size(); i++)
+        std::cout << " " << vec[i].value;
+
+    std::cout << std::endl;
+}
+
+/**
+ * Gibt einen vector auf der Commandline aus.
+ * @param vec auszugebende Vektor
+ * @param name Name des Vektors
+ */
+void SudokuGitter::printIntVec(vector<unsigned  int> vec, string name) {
+    // Print Original Vector
+    std::cout << name << ": ";
+    for (unsigned int i = 0; i < vec.size(); i++)
+        std::cout << " " << vec[i];
+
+    std::cout << std::endl;
+}
+
 

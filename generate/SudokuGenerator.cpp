@@ -14,10 +14,10 @@
  */
 SudokuGitter SudokuGenerator::generateNew() {
 
-    vector<unsigned int> ziffern(elementCount);
+    vector<cell> ziffern(elementCount);
 
     for (unsigned int i = 0; i < elementCount; i++)
-        ziffern[i] = i + 1;
+        ziffern[i] = cell(i + 1, true);
 
     //geordnet erstelle Ziffern in erste Reihe einfügen.
     gitter.cells[0] = ziffern;
@@ -59,21 +59,20 @@ SudokuGitter SudokuGenerator::generateNew() {
  * @return Gibt an, ob ein gültiger Wert eingetragen werden kann (Backtracking)
  */
 bool SudokuGenerator::generateCell(unsigned int row, unsigned int column) {
-
-    vector<unsigned int> ziffern(elementCount);
-    for (unsigned int i = 0; i < elementCount; i++)
-        ziffern[i] = i + 1;
+    vector<cell> ziffern(gitter.getElements());
+    for (unsigned int i = 0; i < gitter.getElements(); i++)
+        ziffern[i] = cell(i + 1);
     shuffle(begin(ziffern), end(ziffern), std::mt19937(std::random_device()()));
 
-    vector<unsigned int> quad(elementCount);
-    vector<unsigned int> currRow(elementCount);
-    vector<unsigned int> currCol(elementCount);
+    vector<cell> quad(gitter.getElements());
+    vector<cell> currRow(gitter.getElements());
+    vector<cell> currCol(gitter.getElements());
 
     // Row Werte merken
     currRow = gitter.cells[row];
     // Column Werte merken
-    for (unsigned int tmpRow = 0; tmpRow < elementCount; tmpRow++) {
-        currCol[tmpRow] = static_cast<unsigned int>(gitter.getCellValue(tmpRow, column));
+    for (unsigned int tmpRow = 0; tmpRow < gitter.getElements(); tmpRow++) {
+        currCol[tmpRow] = gitter.getCell(tmpRow, column);
     }
 
     // Quad Werte merken
@@ -83,7 +82,7 @@ bool SudokuGenerator::generateCell(unsigned int row, unsigned int column) {
     int indexQuad = 0;
     for (auto tmpRow = quadStartRow; tmpRow < quadStartRow + gitter.getQuadHeight(); tmpRow++) {
         for (auto tmpCol = quadStartCol; tmpCol < quadStartCol + gitter.getQuadWidth(); tmpCol++) {
-            quad[indexQuad] = gitter.getCellValue(tmpRow, tmpCol);
+            quad[indexQuad] = gitter.getCell(tmpRow, tmpCol);
             indexQuad++;
         }
     }
@@ -91,18 +90,18 @@ bool SudokuGenerator::generateCell(unsigned int row, unsigned int column) {
     set<int> neighbours = {};
 
     for (auto val : currRow) {
-        neighbours.insert(val);
+        neighbours.insert(val.value);
     }
     for (auto val : currCol) {
-        neighbours.insert(val);
+        neighbours.insert(val.value);
     }
     for (auto val : quad) {
-        neighbours.insert(val);
+        neighbours.insert(val.value);
     }
 
     set<int> values = {};
 
-    for (unsigned int i = 1; i <= elementCount; i++)
+    for (unsigned int i = 1; i <= gitter.getElements(); i++)
         values.insert(i);
 
     vector<unsigned int> options;
@@ -113,7 +112,7 @@ bool SudokuGenerator::generateCell(unsigned int row, unsigned int column) {
 
     unsigned int nextRow = row;
     unsigned int nextCol = column + 1;
-    if (column == elementCount) {
+    if (column == gitter.getElements()) {
         nextCol = 0;
         nextRow++;
     }
@@ -123,20 +122,20 @@ bool SudokuGenerator::generateCell(unsigned int row, unsigned int column) {
 
         std::cout << "###" << row + 1 << "," << column + 1 << ": Versuch " << tmp << " einzufügen. Umgebung: "
                   << std::endl;
-        printVec(currRow, "Row");
-        printVec(currCol, "Column");
-        printVec(quad, "Quad");
-        printVec(options, "Options");
+        SudokuGitter::printCellVec(currRow, "Row");
+        SudokuGitter::printCellVec(currCol, "Column");
+        SudokuGitter::printCellVec(quad, "Quad");
+        SudokuGitter::printIntVec(options, "Options");
 
 
-        gitter.cells[row][column] = tmp;
+        gitter.cells[row][column] = cell(tmp);
 
-        if ((column == elementCount - 1) || generateCell(nextRow, nextCol)) {
+        if ((column == gitter.getElements() - 1) || generateCell(nextRow, nextCol)) {
             return true;
         }
     }
 
-    gitter.cells[row][column] = 0;
+    gitter.cells[row][column] = cell(0);
     return false;
 }
 
@@ -156,11 +155,11 @@ void SudokuGenerator::zerowRow(unsigned int row) {
  * @param vec auszugebende Vektor
  * @param name Name des Vektors
  */
-void SudokuGenerator::printVec(vector<unsigned int> vec, string name) {
+void SudokuGenerator::printCelVec(vector<cell> vec, string name) {
     // Print Original Vector
     std::cout << name << ": ";
     for (unsigned int i = 0; i < vec.size(); i++)
-        std::cout << " " << vec[i];
+        std::cout << " " << vec[i].value;
 
     std::cout << std::endl;
 

@@ -50,7 +50,12 @@ public:
 
     SudokuGitter getSolvable();
 
+    static void printCellVec(vector<cell> vec, string name);
+
+    static void printIntVec(vector<unsigned int> vec, string name);
+
 private:
+
     const unsigned int getElements() { return elements; }
 
     const unsigned int getQuadWidth() { return quadWidth; }

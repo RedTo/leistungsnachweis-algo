@@ -22,7 +22,7 @@ public:
 private:
     bool generateCell(unsigned int row, unsigned int column);
 
-    void printVec(vector<unsigned int> vec, string name);
+    void printCelVec(vector<cell> vec, string name);
 
     unsigned int hadErrorInRow(unsigned int row);
 
