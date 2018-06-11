@@ -54,6 +54,8 @@ public:
 
     static void printIntVec(vector<unsigned int> vec, string name);
 
+    void setQuadPermanent(unsigned int hoehenIndex, unsigned int breitenInxted, vector<vector<cell *>> quadToSet);
+
 private:
 
     const unsigned int getElements() { return elements; }
@@ -65,8 +67,6 @@ private:
     friend class ClassicSudokuVisualizer;
 
     friend class SudokuGenerator;
-
-    void setQuadPermanent(unsigned int hoehenIndex, unsigned int breitenInxted, vector<vector<cell *>> quadToSet);
 
     vector<vector<cell *>> getQuad(unsigned int hoehenIndex, unsigned int breitenInxted);
 

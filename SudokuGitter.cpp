@@ -51,14 +51,15 @@ cell SudokuGitter::getCell(unsigned int row, unsigned int column) {
  * @return Gefordertes Quad des Gitters
  */
 vector<vector<cell *>> SudokuGitter::getQuad(unsigned int hoehenIndex, unsigned int breitenInxted) {
-    vector<vector<cell *>> result;
+    vector<vector<cell *>> result = vector<vector<cell *>>();
 
     unsigned int startHeightIndex = quadHeight * hoehenIndex;
     unsigned int startWidthIndex = quadWidth * breitenInxted;
 
     for (int heightIndex = 0; heightIndex < quadHeight; heightIndex++) {
+        result.push_back(vector<cell *>());
         for (int widthIndex = 0; widthIndex < quadWidth; widthIndex++) {
-            result[heightIndex][widthIndex] = &cells[heightIndex + startHeightIndex][widthIndex + startWidthIndex];
+            result[heightIndex].push_back(&cells[heightIndex + startHeightIndex][widthIndex + startWidthIndex]);
         }
     }
 

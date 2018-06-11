@@ -52,6 +52,61 @@ SudokuGitter SudokuGenerator::generateNew() {
     return SudokuGitter(gitter);
 }
 
+SudokuGitter SudokuGenerator::generateNewTest() {
+
+    //vector<cell> ziffern(elementCount);
+//
+    //for (unsigned int i = 0; i < elementCount; i++)
+    //    ziffern[i] = cell(i + 1, true);
+//
+    ////geordnet erstelle Ziffern in erste Reihe einfügen.
+    //gitter.cells[0] = ziffern;
+    //shuffle(begin(gitter.cells[0]), end(gitter.cells[0]), std::mt19937(std::random_device()()));
+
+    gitter.print();
+
+    // erste Zeile wird ausgelassen
+    unsigned int irow = 0;
+    while (irow < elementCount) {
+        // Bei groeseren sudokus kann es tatsechlich auch mal keine loesung fuer eine Reihe geben -> vorherige Reihe neu machen
+        if (!generateCell(irow, 0)) {
+            // Todo: Reicht es immer nur eine reihe zurueck zu gehen?
+            unsigned int hadErrorsInRow = hadErrorInRow(irow);
+            errorInRow.push_back(irow);
+
+            // Bis zum ruecksprungpunkt 0er einsetzen (aktuelle row ist schon 0)
+            unsigned int jumpBackToRow = irow - 1;
+            while (irow > jumpBackToRow) {
+                irow--;
+                zerowRow(irow);
+            }
+
+            cout << "REDO last row! There is no solution for this row. Errors in this Row: " << hadErrorsInRow + 1
+                 << "\n";
+            gitter.print();
+        } else {
+            irow++;
+            gitter.print();
+        }
+    }
+    return SudokuGitter(gitter);
+}
+
+/**
+ * Generiert ein neues großes (5 in einem und verbunden an den ecken) vollständiges Sudoku.
+ */
+SudokuGitter SudokuGenerator::generateNewBig() {
+    SudokuGenerator* mitteGen = new SudokuGenerator(9);
+    SudokuGitter mitte = mitteGen->generateNew();
+
+    printCelVecValPtr(mitte.getQuad(0, 0), "LinksObenUebernehmen");
+    SudokuGenerator* linksObenGen = new SudokuGenerator(9);
+    linksObenGen->gitter.setQuadPermanent(0, 0, mitte.getQuad(0, 0));
+    SudokuGitter linksOben = linksObenGen->generateNewTest();
+
+    return SudokuGitter(gitter);
+}
+
 /**
  * Generiert valide Werte für die angegebene Zeile und beginnt bei der angegebenen Zelle. Dazu wird Backtracking verwendet.
  * @param row Zeilenposition
@@ -155,11 +210,14 @@ void SudokuGenerator::zerowRow(unsigned int row) {
  * @param vec auszugebende Vektor
  * @param name Name des Vektors
  */
-void SudokuGenerator::printCelVec(vector<cell> vec, string name) {
+void SudokuGenerator::printCelVecValPtr(vector<vector<cell *>> vec, string name) {
     // Print Original Vector
     std::cout << name << ": ";
-    for (unsigned int i = 0; i < vec.size(); i++)
-        std::cout << " " << vec[i].value;
+    for (unsigned int i = 0; i < vec.size(); i++) {
+        std::cout << "\n";
+        for (unsigned int u = 0; u < vec[i].size(); u++)
+            std::cout << " " << vec[i][u]->value;
+    }
 
     std::cout << std::endl;
 

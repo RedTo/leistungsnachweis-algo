@@ -19,14 +19,18 @@ public:
 
     SudokuGitter generateNew();
 
+    SudokuGitter generateNewBig();
 private:
-    bool generateCell(unsigned int row, unsigned int column);
 
-    void printCelVec(vector<cell> vec, string name);
+    bool generateCell(unsigned int row, unsigned int column);
 
     unsigned int hadErrorInRow(unsigned int row);
 
     void zerowRow(unsigned int row);
+
+    void printCelVecValPtr(vector<vector<cell *>> vec, string name);
+
+    SudokuGitter generateNewTest();
 };
 
 
