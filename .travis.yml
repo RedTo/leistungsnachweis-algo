@@ -9,7 +9,8 @@
         "ubuntu-toolchain-r-test"
       ],
       "packages": [
-        "cmake"
+        "cmake",
+        "g++-6"
       ]
     }
   },
@@ -17,18 +18,16 @@
     "pip install --user cpp-coveralls"
   ],
   "script": [
-    "cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Coverage",
+    "CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6 cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Coverage",
     "cmake --build .build --target all",
     "cd .build && mkdir output && ctest -VV"
   ],
   "language": "cpp",
   "global_env": "GH_REPO_NAME=leistungsnachweis-algo DOXYFILE=$TRAVIS_BUILD_DIR/Doxyfile GH_REPO_REF=github.com/ob-algdatii-ss18/leistungsnachweis-algo.git",
   "after_success": [
-    "ls -ahl",
-    "coveralls --root .",
     "cd ..",
     "ls -ahl",
-    "coveralls --root ."
+    "coveralls --root . --exclude \"googletest*\" --exclude \"test\""
   ]
 }
 
