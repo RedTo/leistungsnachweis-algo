@@ -86,6 +86,7 @@ bool SudokuGitter::generateCell(unsigned int row, unsigned int column) {
     vector<SudokuGitter::cell> quad(getElements());
     vector<SudokuGitter::cell> currRow(getElements());
     vector<SudokuGitter::cell> currCol(getElements());
+    vector<SudokuGitter::cell> diag(getElements());
 
     // Row Werte merken
     currRow = cells[row];
@@ -107,6 +108,23 @@ bool SudokuGitter::generateCell(unsigned int row, unsigned int column) {
     }
 
     set<int> neighbours = {};
+
+
+    // Diagonalen Werte merken falls vorhanden Funktioniert nicht für das Mittlere Quadrat
+    if (getElements() % 2 == 1) {
+        if (row == column)
+            for (unsigned int j = 0; j < getElements(); ++j) {
+                diag[j] = getCell(j, j);
+            }
+        else if (row == getElements() - column)
+            for (unsigned int j = 0; j < getElements(); ++j) {
+                diag[j] = getCell(j, getElements() - j);
+            }
+
+        for (auto val: diag) {
+            neighbours.insert(val.value);
+        }
+    }
 
     for (auto val : currRow) {
         neighbours.insert(val.value);
@@ -144,6 +162,7 @@ bool SudokuGitter::generateCell(unsigned int row, unsigned int column) {
         printVec(currRow, "Row");
         printVec(currCol, "Column");
         printVec(quad, "Quad");
+        printVec(diag, "Diag");
         printVec(options, "Options");
 
 
