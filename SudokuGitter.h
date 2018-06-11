@@ -12,10 +12,9 @@ using namespace std;
 class SudokuGitter {
 private:
     vector<vector<unsigned int>> cells;
-    const unsigned int elements;
-    const unsigned int quadWidth;
-    const unsigned int quadHeight;
-    list<int> errorInRow;
+    unsigned int elements;
+    unsigned int quadWidth;
+    unsigned int quadHeight;
 
 public:
     explicit SudokuGitter(unsigned int elements);
@@ -23,8 +22,6 @@ public:
     unsigned int getCell(unsigned int row, unsigned int column);
 
     void setCell(unsigned int row, unsigned int column, unsigned int value);
-
-    void generateNew();
 
     void print();
 
@@ -37,15 +34,9 @@ private:
 
     const unsigned int getQuadHeight() { return quadHeight; }
 
-    bool generateCell(unsigned int row, unsigned int column);
-
-    void printVec(vector<unsigned int> vec, string name);
-
-    unsigned int hadErrorInRow(unsigned int row);
-
-    void zerowRow(unsigned int row);
-
     friend class ClassicSudokuVisualizer;
+
+    friend class SudokuGenerator;
 };
 
 #endif //TESTPROJECT_SUDOKUGITTER_H

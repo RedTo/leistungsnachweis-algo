@@ -7,6 +7,7 @@
 #include "gtest/gtest.h"
 #include "../SudokuGitter.h"
 #include "../visual/ClassicSudokuVisualizer.h"
+#include "../generate/SudokuGenerator.h"
 
 namespace {
     static bool checkRows(SudokuGitter gitter, const unsigned int size) {
@@ -81,15 +82,13 @@ namespace {
     }
 
     static void buildAndAssert_NoZero(int elements) {
-        SudokuGitter gitter = SudokuGitter(elements);
-        gitter.generateNew();
+        SudokuGitter gitter = SudokuGenerator(elements).generateNew();
 
         ASSERT_EQ(countZeros(gitter, elements), 0);
     }
 
     static void buildAndAssert_Elements(int size) {
-        SudokuGitter gitter = SudokuGitter(size);
-        gitter.generateNew();
+        SudokuGitter gitter = SudokuGenerator(size).generateNew();
 
         ASSERT_TRUE(checkRows(gitter, size));
         ASSERT_TRUE(checkColumns(gitter, size));
@@ -110,13 +109,12 @@ namespace {
         }
     }
 
-    static void startVisualizer(int size){
-        SudokuGitter gitter = SudokuGitter(size);
-        gitter.generateNew();
+    static void startVisualizer(int size) {
+        SudokuGitter gitter = SudokuGenerator(size).generateNew();
         SudokuGitter solvable = gitter.getSolvable();
 
         ClassicSudokuVisualizer visualizer = ClassicSudokuVisualizer(gitter);
-        visualizer.createHTML("output/sudoku" + std::to_string(size) +  ".html");
+        visualizer.createHTML("output/sudoku" + std::to_string(size) + ".html");
     }
 }
 
