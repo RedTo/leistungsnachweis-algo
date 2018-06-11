@@ -5,21 +5,14 @@
 
 {\ttfamily \#include $<$Sudoku\-Gitter.\-h$>$}
 
-\subsection*{Klassen}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{struct_sudoku_gitter_1_1cell}{cell}
-\end{DoxyCompactItemize}
 \subsection*{Öffentliche Methoden}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{class_sudoku_gitter_ad3443d5846cba4cef8fdfebc46f16c0b}{Sudoku\-Gitter} (unsigned int elements)
 \item 
-\hyperlink{struct_sudoku_gitter_1_1cell}{cell} \hyperlink{class_sudoku_gitter_afe38684eb8b3d8b7d4d720dd462173c0}{get\-Cell} (unsigned int row, unsigned int column)
+unsigned int \hyperlink{class_sudoku_gitter_a588e1738f938570014ab104a834f9a89}{get\-Cell} (unsigned int row, unsigned int column)
 \item 
-void \hyperlink{class_sudoku_gitter_af096bfe6c7b8299f33f885ab69d76217}{set\-Cell} (unsigned int row, unsigned int column, \hyperlink{struct_sudoku_gitter_1_1cell}{cell} value)
-\item 
-void \hyperlink{class_sudoku_gitter_a1cd2a95fea6f56d295fcc4bb11412c2e}{generate\-New} ()
+void \hyperlink{class_sudoku_gitter_aa7fa54638ade311994bd8f6433df8ff0}{set\-Cell} (unsigned int row, unsigned int column, unsigned int value)
 \item 
 void \hyperlink{class_sudoku_gitter_a771332a8a5eff5e1917538adfb237d0e}{print} ()
 \item 
@@ -30,6 +23,9 @@ void \hyperlink{class_sudoku_gitter_a771332a8a5eff5e1917538adfb237d0e}{print} ()
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{class_sudoku_gitter_a3f8b3753aa8e1441912c8724f574e730}{class {\bfseries Classic\-Sudoku\-Visualizer}}\label{class_sudoku_gitter_a3f8b3753aa8e1441912c8724f574e730}
+
+\item 
+\hypertarget{class_sudoku_gitter_aaf5a078b7eb0c0ad6f5ed7ec84594d48}{class {\bfseries Sudoku\-Generator}}\label{class_sudoku_gitter_aaf5a078b7eb0c0ad6f5ed7ec84594d48}
 
 \end{DoxyCompactItemize}
 
@@ -53,21 +49,14 @@ Konstruktor um ein Sudoku zu erstellen
 
 
 \subsection{Dokumentation der Elementfunktionen}
-\hypertarget{class_sudoku_gitter_a1cd2a95fea6f56d295fcc4bb11412c2e}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!generate\-New@{generate\-New}}
-\index{generate\-New@{generate\-New}!SudokuGitter@{Sudoku\-Gitter}}
-\subsubsection[{generate\-New}]{\setlength{\rightskip}{0pt plus 5cm}void Sudoku\-Gitter\-::generate\-New (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{class_sudoku_gitter_a1cd2a95fea6f56d295fcc4bb11412c2e}
-Generiert ein neues vollständiges Sudoku. \hypertarget{class_sudoku_gitter_afe38684eb8b3d8b7d4d720dd462173c0}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!get\-Cell@{get\-Cell}}
+\hypertarget{class_sudoku_gitter_a588e1738f938570014ab104a834f9a89}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!get\-Cell@{get\-Cell}}
 \index{get\-Cell@{get\-Cell}!SudokuGitter@{Sudoku\-Gitter}}
-\subsubsection[{get\-Cell}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Sudoku\-Gitter\-::cell} Sudoku\-Gitter\-::get\-Cell (
+\subsubsection[{get\-Cell}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Sudoku\-Gitter\-::get\-Cell (
 \begin{DoxyParamCaption}
 \item[{unsigned int}]{row, }
 \item[{unsigned int}]{column}
 \end{DoxyParamCaption}
-)}}\label{class_sudoku_gitter_afe38684eb8b3d8b7d4d720dd462173c0}
+)}}\label{class_sudoku_gitter_a588e1738f938570014ab104a834f9a89}
 Gibt den Wert einer Zelle zurück. 
 \begin{DoxyParams}{Parameter}
 {\em row} & Zeilenposition \\
@@ -85,15 +74,15 @@ Wert der Zelle
 {}
 \end{DoxyParamCaption}
 )}}\label{class_sudoku_gitter_a771332a8a5eff5e1917538adfb237d0e}
-Gibt das Sudoku auf der Commandline aus. \hypertarget{class_sudoku_gitter_af096bfe6c7b8299f33f885ab69d76217}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!set\-Cell@{set\-Cell}}
+Gibt das Sudoku auf der Commandline aus. \hypertarget{class_sudoku_gitter_aa7fa54638ade311994bd8f6433df8ff0}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!set\-Cell@{set\-Cell}}
 \index{set\-Cell@{set\-Cell}!SudokuGitter@{Sudoku\-Gitter}}
 \subsubsection[{set\-Cell}]{\setlength{\rightskip}{0pt plus 5cm}void Sudoku\-Gitter\-::set\-Cell (
 \begin{DoxyParamCaption}
 \item[{unsigned int}]{row, }
 \item[{unsigned int}]{column, }
-\item[{{\bf cell}}]{value}
+\item[{unsigned int}]{value}
 \end{DoxyParamCaption}
-)}}\label{class_sudoku_gitter_af096bfe6c7b8299f33f885ab69d76217}
+)}}\label{class_sudoku_gitter_aa7fa54638ade311994bd8f6433df8ff0}
 Gibt den Wert einer Zelle zurück. 
 \begin{DoxyParams}{Parameter}
 {\em row} & Zeilenposition \\

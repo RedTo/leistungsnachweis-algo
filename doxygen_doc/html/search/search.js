@@ -7,8 +7,8 @@
 
 var indexSectionsWithContent =
 {
-  0: "cgprs",
-  1: "cs",
+  0: "gprs",
+  1: "s",
   2: "gps",
   3: "r"
 };
