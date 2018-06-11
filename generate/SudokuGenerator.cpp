@@ -73,7 +73,7 @@ bool SudokuGenerator::generateCell(unsigned int row, unsigned int column) {
     currRow = gitter.cells[row];
     // Column Werte merken
     for (unsigned int tmpRow = 0; tmpRow < elementCount; tmpRow++) {
-        currCol[tmpRow] = static_cast<unsigned int>(gitter.getCell(tmpRow, column));
+        currCol[tmpRow] = static_cast<unsigned int>(gitter.getCellValue(tmpRow, column));
     }
 
     // Quad Werte merken
@@ -83,7 +83,7 @@ bool SudokuGenerator::generateCell(unsigned int row, unsigned int column) {
     int indexQuad = 0;
     for (auto tmpRow = quadStartRow; tmpRow < quadStartRow + gitter.getQuadHeight(); tmpRow++) {
         for (auto tmpCol = quadStartCol; tmpCol < quadStartCol + gitter.getQuadWidth(); tmpCol++) {
-            quad[indexQuad] = gitter.getCell(tmpRow, tmpCol);
+            quad[indexQuad] = gitter.getCellValue(tmpRow, tmpCol);
             indexQuad++;
         }
     }

@@ -14,7 +14,7 @@ namespace {
         for (unsigned int row = 0; row < size; row++) {
             std::set<int> elements;
             for (unsigned int column = 0; column < size; column++) {
-                auto item = gitter.getCell(row, column);
+                auto item = gitter.getCellValue(row, column);
                 if (item != 0)
                     elements.insert(item);
             }
@@ -31,7 +31,7 @@ namespace {
         for (unsigned int column = 0; column < size; column++) {
             std::set<int> elements;
             for (unsigned int row = 0; row < size; row++) {
-                auto item = gitter.getCell(row, column);
+                auto item = gitter.getCellValue(row, column);
                 if (item != 0)
                     elements.insert(item);
             }
@@ -56,7 +56,7 @@ namespace {
 
             for (auto tmpRow = quadStartRow; tmpRow < quadStartRow + quadHeight; tmpRow++) {
                 for (auto tmpCol = quadStartColumn; tmpCol < quadStartColumn + quadWidth; tmpCol++) {
-                    auto item = gitter.getCell(tmpRow, tmpCol);
+                    auto item = gitter.getCellValue(tmpRow, tmpCol);
                     if (item != 0)
                         elements.insert(item);
                 }
@@ -74,7 +74,7 @@ namespace {
         int countZero = 0;
         for (unsigned int row = 0; row < size; row++) {
             for (unsigned int col = 0; col < size; col++) {
-                if (gitter.getCell(row, col) == 0)
+                if (gitter.getCellValue(row, col) == 0)
                     countZero++;
             }
         }

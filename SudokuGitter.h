@@ -6,12 +6,35 @@
 
 using namespace std;
 
+struct cell {
+    unsigned int value;
+    bool isStatic = false;
+
+    cell() {
+        value = 0;
+    }
+
+    cell(cell c, bool s) {
+        value = c.value;
+        isStatic = s;
+    }
+
+    cell(unsigned int v) {
+        value = v;
+    }
+
+    cell(unsigned int v, bool s) {
+        value = v;
+        isStatic = s;
+    }
+};
+
 /**
  * Klasse für ein n x n Sudoku Gitter
  */
 class SudokuGitter {
 private:
-    vector<vector<unsigned int>> cells;
+    vector<vector<cell>> cells;
     unsigned int elements;
     unsigned int quadWidth;
     unsigned int quadHeight;
@@ -19,7 +42,7 @@ private:
 public:
     explicit SudokuGitter(unsigned int elements);
 
-    unsigned int getCell(unsigned int row, unsigned int column);
+    unsigned int getCellValue(unsigned int row, unsigned int column);
 
     void setCell(unsigned int row, unsigned int column, unsigned int value);
 
@@ -38,9 +61,11 @@ private:
 
     friend class SudokuGenerator;
 
-    vector<vector<unsigned int *>> getQuad(unsigned int hoehenIndex, unsigned int breitenInxted);
+    void setQuadPermanent(unsigned int hoehenIndex, unsigned int breitenInxted, vector<vector<cell *>> quadToSet);
 
-    void setQuad(unsigned int hoehenIndex, unsigned int breitenInxted, vector<vector<unsigned int *>> quadToSet);
+    vector<vector<cell *>> getQuad(unsigned int hoehenIndex, unsigned int breitenInxted);
+
+    cell getCell(unsigned int row, unsigned int column);
 };
 
 #endif //TESTPROJECT_SUDOKUGITTER_H

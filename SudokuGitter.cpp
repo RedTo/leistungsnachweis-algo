@@ -14,7 +14,7 @@
  * @param elements Gibt die Größe des Sudokus an: elements x elements
  */
 SudokuGitter::SudokuGitter(const unsigned int elements) : elements(elements),
-                                                          cells(elements, vector<unsigned int>(elements)),
+                                                          cells(elements, vector<cell>(elements)),
                                                           quadHeight(static_cast<const unsigned int>(std::sqrt(
                                                                   elements))),
                                                           quadWidth(
@@ -30,7 +30,17 @@ SudokuGitter::SudokuGitter(const unsigned int elements) : elements(elements),
  * @param column Spaltenposition
  * @return Wert der Zelle
  */
-unsigned int SudokuGitter::getCell(unsigned int row, unsigned int column) {
+unsigned int SudokuGitter::getCellValue(unsigned int row, unsigned int column) {
+    return cells[row][column].value;
+}
+
+/**
+ * Gibt den Wert einer Zelle zurück.
+ * @param row Zeilenposition
+ * @param column Spaltenposition
+ * @return Wert der Zelle
+ */
+cell SudokuGitter::getCell(unsigned int row, unsigned int column) {
     return cells[row][column];
 }
 
@@ -40,22 +50,19 @@ unsigned int SudokuGitter::getCell(unsigned int row, unsigned int column) {
  * @param breitenInxted
  * @return Gefordertes Quad des Gitters
  */
-vector<vector<unsigned int*>> SudokuGitter::getQuad(unsigned int hoehenIndex, unsigned int breitenInxted) {
-    vector<vector<unsigned int*>> result;
+vector<vector<cell *>> SudokuGitter::getQuad(unsigned int hoehenIndex, unsigned int breitenInxted) {
+    vector<vector<cell *>> result;
 
     unsigned int startHeightIndex = quadHeight * hoehenIndex;
     unsigned int startWidthIndex = quadWidth * breitenInxted;
 
-    //if (endHeihgt > elements || endWidth > elements)
-    //    throw std::invalid_argument( "Quad index out of bounds! Index cant be higher than available quad amount." );
-    //else if (hoehenIndex < 0 || breitenInxted < 0)
-    //   throw std::invalid_argument( "Quad index out of bounds! Index cant be lower than 0." );
-
     for (int heightIndex = 0; heightIndex < quadHeight; heightIndex++) {
         for (int widthIndex = 0; widthIndex < quadWidth; widthIndex++) {
-            result[heightIndex][widthIndex] = &cells[heightIndex+startHeightIndex][widthIndex+startWidthIndex];
+            result[heightIndex][widthIndex] = &cells[heightIndex + startHeightIndex][widthIndex + startWidthIndex];
         }
     }
+
+    return result;
 }
 
 /**
@@ -64,20 +71,18 @@ vector<vector<unsigned int*>> SudokuGitter::getQuad(unsigned int hoehenIndex, un
  * @param breitenInxted
  * @return Gefordertes Quad des Gitters
  */
-void SudokuGitter::setQuad(unsigned int hoehenIndex, unsigned int breitenInxted, vector<vector<unsigned int*>> quadToSet) {
-    vector<vector<unsigned int*>> result;
+void
+SudokuGitter::setQuadPermanent(unsigned int hoehenIndex, unsigned int breitenInxted, vector<vector<cell *>> quadToSet) {
+    vector<vector<unsigned int *>> result;
 
     unsigned int startHeightIndex = quadHeight * hoehenIndex;
     unsigned int startWidthIndex = quadWidth * breitenInxted;
 
-    //if (endHeihgt > elements || endWidth > elements)
-    //    throw std::invalid_argument( "Quad index out of bounds! Index cant be higher than available quad amount." );
-    //else if (hoehenIndex < 0 || breitenInxted < 0)
-    //   throw std::invalid_argument( "Quad index out of bounds! Index cant be lower than 0." );
-
     for (int heightIndex = 0; heightIndex < quadHeight; heightIndex++) {
         for (int widthIndex = 0; widthIndex < quadWidth; widthIndex++) {
-            cells[heightIndex+startHeightIndex][widthIndex+startWidthIndex] = *quadToSet[heightIndex][widthIndex];
+            //Setze als fest in beiden Gittern
+            cells[heightIndex + startHeightIndex][widthIndex + startWidthIndex].isStatic = true;
+            cells[heightIndex + startHeightIndex][widthIndex + startWidthIndex] = *quadToSet[heightIndex][widthIndex];
         }
     }
 }
@@ -93,24 +98,13 @@ void SudokuGitter::setCell(unsigned int row, unsigned int column, unsigned int v
 }
 
 /**
- * Gibt den Wert einer Zelle zurück.
- * @param row Zeilenposition
- * @param column Spaltenposition
- * @return Wert der Zelle
- */
-void SudokuGitter::setCellPermanent(unsigned int row, unsigned int column, unsigned int value) {
-    cells[row][column] = value;
-    cells[row][column]
-}
-
-/**
  * Gibt das Sudoku auf der Commandline aus.
  */
 void SudokuGitter::print() {
     for (unsigned int irow = 0; irow < getElements(); ++irow) {
         std::cout << " ";
         for (unsigned int icol = 0; icol < getElements(); ++icol) {
-            std::cout << cells[irow][icol] << " ";
+            std::cout << getCellValue(icol, irow) << " ";
         }
         std::cout << std::endl; // << "--" << std::endl;
     }
@@ -136,7 +130,7 @@ SudokuGitter SudokuGitter::getSolvable() {
     for (unsigned int row = 0; row < getElements(); row++) {
         for (unsigned int col = 0; col < getElements(); col++) {
             if (permutation[row * getElements() + col] == 1)
-                solvable.setCell(row, col, getCell(row, col));
+                solvable.setCell(row, col, getCellValue(row, col));
         }
     }
 

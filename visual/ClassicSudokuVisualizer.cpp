@@ -90,7 +90,7 @@ const std::string  ClassicSudokuVisualizer::createCells(){
     for (unsigned int row = 0; row < size; row++) {
         cells.append("<tr>");
         for (unsigned int col = 0; col < size; col++) {
-            unsigned int num = solvable.getCell(row, col);
+            unsigned int num = solvable.getCellValue(row, col);
             if(num > 0){
               cells.append("<td><input id='cell-");
               cells.append(std::to_string(counter));
