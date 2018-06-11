@@ -23,7 +23,6 @@
   ],
   "script": [
     "cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Coverage",
-    "cmake --build .build --target all",
     "cd .build && mkdir output && ctest -VV"
   ],
   "language": "cpp",
@@ -32,8 +31,8 @@
     "cd $TRAVIS_BUILD_DIR",
     "chmod +x generateDocumentationAndDeploy.sh",
     "./generateDocumentationAndDeploy.sh",
-    "cd $TRAVIS_BUILD_DIR",
-    "coveralls --root .. --exclude googletest --exclude test --exclude .build --exclude code_docs"
+    "ls -ahl",
+    "coveralls --root . --exclude \".*gtest.*\" --exclude \".*CMakeFiles.*\""
   ]
 }
 
