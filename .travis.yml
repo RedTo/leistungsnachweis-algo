@@ -1,39 +1,23 @@
-{
-  "os": "linux",
-  "dist": "trusty",
-  "sudo": false,
-  "group": "stable",
-  "addons": {
-    "apt": {
-      "sources": [
-        "ubuntu-toolchain-r-test"
-      ],
-      "packages": [
-        "cmake",
-        "doxygen",
-        "doxygen-doc",
-        "doxygen-latex",
-        "doxygen-gui",
-        "graphviz"
-      ]
-    }
-  },
-  "before_install": [
-    "pip install --user cpp-coveralls"
-  ],
-  "script": [
-    "cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Coverage",
-    "cmake --build .build --target all",
-    "cd .build && mkdir output && ctest -VV"
-  ],
-  "language": "cpp",
-  "global_env": "GH_REPO_NAME=leistungsnachweis-algo DOXYFILE=$TRAVIS_BUILD_DIR/Doxyfile GH_REPO_REF=github.com/ob-algdatii-ss18/leistungsnachweis-algo.git",
-  "after_success": [
-    "cd $TRAVIS_BUILD_DIR",
-    "chmod +x generateDocumentationAndDeploy.sh",
-    "./generateDocumentationAndDeploy.sh",
-    "ls -ahl",
-    "coveralls --gcov 'llvm-cov gcov' --gcov-options '\-lp'"
-  ]
-}
+language: cpp
+compiler: clang
 
+
+before_install:
+  - pip install --user cpp-coveralls
+
+before_script:
+  - mkdir build
+  - mkdir html
+  - cd build
+  - cmake ..
+  - cd ..
+
+script:
+  - cd build
+  - cmake --build .
+  - ctest .
+  - cd ..
+
+
+after_success:
+  - coveralls --exclude build/CMakeFiles/ --exclude build/googletest/ --exclude googletest/ --exclude build/main/ --exclude main/ --gcov "llvm-cov gcov" --gcov-options '\-lp'
