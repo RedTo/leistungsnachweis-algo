@@ -3,7 +3,6 @@
   "dist": "trusty",
   "sudo": false,
   "group": "stable",
-  "compiler": "gcc",
   "addons": {
     "apt": {
       "sources": [
