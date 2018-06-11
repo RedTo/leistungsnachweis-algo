@@ -11,7 +11,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ftest-coverage")
 enable_testing()
 
 add_subdirectory(main)
-add_subdirectory(googletest)
+add_subdirectory(gtest)
 add_subdirectory(test)
 
 #cmake_minimum_required(VERSION 3.9)

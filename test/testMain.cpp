@@ -1,8 +1,10 @@
-#include "gtest/gtest.h"
+//
+// Created by Wolfgang on 26.03.18.
+//
+
+#include "gtest.h"
 
 int main(int argc, char **argv) {
-    //disable cout by setting failbit, remove this line or call std::cout.clear()
-    std::cout.setstate(std::ios_base::failbit);
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }
