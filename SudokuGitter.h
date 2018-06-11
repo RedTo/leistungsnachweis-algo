@@ -37,6 +37,10 @@ private:
     friend class ClassicSudokuVisualizer;
 
     friend class SudokuGenerator;
+
+    vector<vector<unsigned int *>> getQuad(unsigned int hoehenIndex, unsigned int breitenInxted);
+
+    void setQuad(unsigned int hoehenIndex, unsigned int breitenInxted, vector<vector<unsigned int *>> quadToSet);
 };
 
 #endif //TESTPROJECT_SUDOKUGITTER_H

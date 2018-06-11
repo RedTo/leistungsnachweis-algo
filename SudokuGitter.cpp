@@ -35,6 +35,54 @@ unsigned int SudokuGitter::getCell(unsigned int row, unsigned int column) {
 }
 
 /**
+ * Gibt ein Quad als verschachtelten vector zurück in dem sich Pointer zu den eigentlichen Werten befinden.
+ * @param hoehenIndex
+ * @param breitenInxted
+ * @return Gefordertes Quad des Gitters
+ */
+vector<vector<unsigned int*>> SudokuGitter::getQuad(unsigned int hoehenIndex, unsigned int breitenInxted) {
+    vector<vector<unsigned int*>> result;
+
+    unsigned int startHeightIndex = quadHeight * hoehenIndex;
+    unsigned int startWidthIndex = quadWidth * breitenInxted;
+
+    //if (endHeihgt > elements || endWidth > elements)
+    //    throw std::invalid_argument( "Quad index out of bounds! Index cant be higher than available quad amount." );
+    //else if (hoehenIndex < 0 || breitenInxted < 0)
+    //   throw std::invalid_argument( "Quad index out of bounds! Index cant be lower than 0." );
+
+    for (int heightIndex = 0; heightIndex < quadHeight; heightIndex++) {
+        for (int widthIndex = 0; widthIndex < quadWidth; widthIndex++) {
+            result[heightIndex][widthIndex] = &cells[heightIndex+startHeightIndex][widthIndex+startWidthIndex];
+        }
+    }
+}
+
+/**
+ * Setze ein quad in einem Gitter permanent.
+ * @param hoehenIndex
+ * @param breitenInxted
+ * @return Gefordertes Quad des Gitters
+ */
+void SudokuGitter::setQuad(unsigned int hoehenIndex, unsigned int breitenInxted, vector<vector<unsigned int*>> quadToSet) {
+    vector<vector<unsigned int*>> result;
+
+    unsigned int startHeightIndex = quadHeight * hoehenIndex;
+    unsigned int startWidthIndex = quadWidth * breitenInxted;
+
+    //if (endHeihgt > elements || endWidth > elements)
+    //    throw std::invalid_argument( "Quad index out of bounds! Index cant be higher than available quad amount." );
+    //else if (hoehenIndex < 0 || breitenInxted < 0)
+    //   throw std::invalid_argument( "Quad index out of bounds! Index cant be lower than 0." );
+
+    for (int heightIndex = 0; heightIndex < quadHeight; heightIndex++) {
+        for (int widthIndex = 0; widthIndex < quadWidth; widthIndex++) {
+            cells[heightIndex+startHeightIndex][widthIndex+startWidthIndex] = *quadToSet[heightIndex][widthIndex];
+        }
+    }
+}
+
+/**
  * Gibt den Wert einer Zelle zurück.
  * @param row Zeilenposition
  * @param column Spaltenposition
@@ -42,6 +90,17 @@ unsigned int SudokuGitter::getCell(unsigned int row, unsigned int column) {
  */
 void SudokuGitter::setCell(unsigned int row, unsigned int column, unsigned int value) {
     cells[row][column] = value;
+}
+
+/**
+ * Gibt den Wert einer Zelle zurück.
+ * @param row Zeilenposition
+ * @param column Spaltenposition
+ * @return Wert der Zelle
+ */
+void SudokuGitter::setCellPermanent(unsigned int row, unsigned int column, unsigned int value) {
+    cells[row][column] = value;
+    cells[row][column]
 }
 
 /**
