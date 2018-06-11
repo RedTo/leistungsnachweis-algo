@@ -19,6 +19,7 @@
   ],
   "script": [
     "CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6",
+    "mkdir .build",
     "cmake --build .build --target all",
     "cd .build && mkdir output && ctest -VV"
   ],
