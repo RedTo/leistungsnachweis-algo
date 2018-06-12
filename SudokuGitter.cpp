@@ -25,6 +25,7 @@ SudokuGitter::SudokuGitter(const unsigned int elements) : elements(elements),
     cout << "quad height: " << getQuadHeight() << " quad width:" << getQuadWidth() << endl;
 }
 
+
 /**
  * Generiert ein neues vollständiges Sudoku.
  */

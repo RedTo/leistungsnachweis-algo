@@ -10,6 +10,7 @@ int main() {
     //disable cout by setting failbit, remove this line or call std::cout.clear()
     std::cout.setstate(std::ios_base::failbit);
     std::cout << "###### Ende ######" << std::endl;
+
     gitter.print();
     std::cout << "Zeile 1 Spalte 0: " << gitter.getCell(1, 0).value << std::endl;
 

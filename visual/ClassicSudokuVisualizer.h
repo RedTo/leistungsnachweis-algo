@@ -25,5 +25,4 @@ private:
     const std::string createBorderLeftStyle();
 };
 
-
 #endif //SUDOKU_CLASSICSUDOKUVISUALIZER_H
