@@ -6,8 +6,8 @@
 int main() {
     int elements = 9;
     SudokuGenerator generator = SudokuGenerator(elements);
-    //SudokuGitter gitter = generator.generateNew();
-    SudokuGitter gitter = generator.generateNewBig();
+    SudokuGitter gitter = generator.generateNew();
+    //SudokuGitter gitter = generator.generateNewBig();
 
     //disable cout by setting failbit, remove this line or call std::cout.clear()
     //std::cout.setstate(std::ios_base::failbit);
