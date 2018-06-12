@@ -31,7 +31,6 @@ int main() {
     std::cout << "##### solved Sudoku #######" << std::endl;
     //SudokuGitter::solve(solvable);
 
-
     ClassicSudokuVisualizer visualizer = ClassicSudokuVisualizer(gitter);
     visualizer.createHTML("output/gitter.html");
 
