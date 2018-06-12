@@ -39,7 +39,7 @@ TEST(SudokuGitter_ColRow_Test, Sudoku12_ColRow) {
     constexpr unsigned int size = 12;
     buildAndAssert_Elements(size);
 }
-
+/*
 TEST(SudokuGitter_ColRow_Test, Sudoku15_ColRow) {
     constexpr unsigned int size = 15;
     buildAndAssert_Elements(size);
@@ -48,4 +48,4 @@ TEST(SudokuGitter_ColRow_Test, Sudoku15_ColRow) {
 TEST(SudokuGitter_ColRow_Test, Sudoku16_ColRow) {
     constexpr unsigned int size = 16;
     buildAndAssert_Elements(size);
-}
+}*/

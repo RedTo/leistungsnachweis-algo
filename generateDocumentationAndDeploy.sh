@@ -85,7 +85,7 @@ if [ -d "doxygen_doc/html" ] && [ -f "doxygen_doc/html/index.html" ]; then
     # gh-pages branch.
     # GitHub is smart enough to know which files have changed and which files have
     # stayed the same and will only update the changed files.
-    cp $TRAVIS_BUILD_DIR/.build/output/ . -r
+    cp $TRAVIS_BUILD_DIR/build/output/ . -r
     git add --all
 
     # Commit the added files with a title and description containing the Travis CI

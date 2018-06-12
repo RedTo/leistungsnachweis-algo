@@ -35,7 +35,6 @@ public:
         }
     };
 
-
 private:
     vector<vector<cell>> cells;
     const unsigned int elements;

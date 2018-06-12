@@ -20,6 +20,7 @@ const std::string ClassicSudokuVisualizer::createBorderBottomStyle() {
     }
     border_bottom = border_bottom.substr(0, border_bottom.length() - 2);
     border_bottom.append(" { border-bottom: 2px solid #000; } ");
+
     return border_bottom;
 }
 
