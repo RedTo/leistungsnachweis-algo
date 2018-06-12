@@ -2,32 +2,35 @@
   "os": "linux",
   "dist": "trusty",
   "sudo": false,
-  "group": "stable",
+  "language": "cpp",
+  "compiler": "clang",
   "addons": {
     "apt": {
       "sources": [
         "ubuntu-toolchain-r-test"
       ],
       "packages": [
-        "cmake",
-        "g++-6"
+        "cmake"
       ]
     }
   },
   "before_install": [
     "pip install --user cpp-coveralls"
   ],
-  "script": [
-    "CXX=/usr/bin/g++-6 CC=/usr/bin/gcc-6 cmake . -B\".build\" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Coverage",
-    "cmake --build .build --target all",
-    "cd .build && mkdir output && ctest -VV"
+  "before_script": [
+    "mkdir build",
+    "cd build"
+    "cmake -DENABLE_COVERAGE=ON ..",
   ],
-  "language": "cpp",
+  "script": [
+    "cmake --build ."
+    "mkdir output",
+    "ctest ."
+  ],
   "global_env": "GH_REPO_NAME=leistungsnachweis-algo DOXYFILE=$TRAVIS_BUILD_DIR/Doxyfile GH_REPO_REF=github.com/ob-algdatii-ss18/leistungsnachweis-algo.git",
   "after_success": [
     "cd ..",
-    "ls -ahl",
-    "coveralls --root . --exclude .build --exclude googletest --exclude test --gcov \"llvm-cov gcov\" --gcov-options '\-lp'"
+    "coveralls --gcov \"llvm-cov gcov\" --gcov-options '\-lp'"
   ]
 }
 
