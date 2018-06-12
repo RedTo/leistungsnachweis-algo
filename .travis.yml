@@ -23,6 +23,6 @@ script:
   - cd ..
 
 after_success:
-  - coveralls
+  - coveralls -e build -e googletest -e test
 
 
