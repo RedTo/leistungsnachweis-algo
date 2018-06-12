@@ -15,7 +15,6 @@ set(SOURCE_FILES SudokuGitter.cpp SudokuGitter.h visual/ClassicSudokuVisualizer.
 set(TEST_FILES test/test_head.h test/testMain.cpp test/test_SudokuGitterColRow.cpp test/test_SudokuGitterSolvable.cpp test/test_SudokuGitter.cpp test/test_SudokuGitterStressTest.cpp test/test_SudokuGitterColRowStressTest.cpp test/test_ClassicSudokuVisualizer.cpp)
 #set(VISUAL_FILES )
 
-
 add_executable(sudoku main.cpp ${SOURCE_FILES})
 set_target_properties(sudoku PROPERTIES LINKER_LANGUAGE CXX)
 
