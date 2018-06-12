@@ -14,19 +14,16 @@
  */
 SudokuGitter SudokuGenerator::generateNew() {
 
-    vector<cell> ziffern(elementCount);
+    unsigned int irow = 0;
 
-    for (unsigned int i = 0; i < elementCount; i++)
-        ziffern[i] = cell(i + 1, true);
+    if (gitter.getQuadWidth() == gitter.getQuadHeight())
+        initWithQuad();
+    else {
+        initWithLine();
+        irow = 1;
+    }
 
-    //geordnet erstelle Ziffern in erste Reihe einfügen.
-    gitter.cells[0] = ziffern;
-    shuffle(begin(gitter.cells[0]), end(gitter.cells[0]), std::mt19937(std::random_device()()));
 
-    gitter.print();
-
-    // erste Zeile wird ausgelassen
-    unsigned int irow = 1;
     while (irow < elementCount) {
         // Bei groeseren sudokus kann es tatsechlich auch mal keine loesung fuer eine Reihe geben -> vorherige Reihe neu machen
         if (!generateCell(irow, 0)) {
@@ -50,6 +47,50 @@ SudokuGitter SudokuGenerator::generateNew() {
         }
     }
     return SudokuGitter(gitter);
+}
+
+void SudokuGenerator::initWithLine() {
+    vector<cell> ziffern(elementCount);
+
+    for (unsigned int i = 0; i < elementCount; i++)
+        ziffern[i] = cell(i + 1, true);
+
+    //geordnet erstelle Ziffern in erste Reihe einfügen.
+    gitter.cells[0] = ziffern;
+    shuffle(begin(gitter.cells[0]), end(gitter.cells[0]), std::mt19937(std::random_device()()));
+
+    gitter.print();
+}
+
+/**
+ * Generiert ein neues vollständiges Sudoku.
+ */
+void SudokuGenerator::initWithQuad() {
+
+    vector<cell> ziffern(elementCount);
+
+    for (unsigned int i = 0; i < elementCount; i++)
+        ziffern[i] = cell(i + 1, true);
+
+    //geordnet erstelle Ziffern in erste Reihe einfügen.
+    //gitter.cells[0] = ziffern;
+    shuffle(begin(ziffern), end(ziffern), std::mt19937(std::random_device()()));
+
+
+    int middleQuadColumnIndex = gitter.getQuadWidth() / 2;
+    int middleQuadRowIndex = gitter.getQuadHeight() / 2;
+    auto quad = gitter.getQuad(middleQuadRowIndex, middleQuadColumnIndex);
+
+
+    for (unsigned int i = 0; i < quad.size(); i++) {
+        //std::cout << "\n";
+        for (unsigned int u = 0; u < quad[i].size(); u++) {
+            *quad[i][u] = ziffern[i * gitter.getQuadHeight() + u];
+        }
+    }
+    gitter.print();
+
+    printCelVecValPtr(quad, "middleQuad");
 }
 
 SudokuGitter SudokuGenerator::generateNewTest() {
@@ -96,11 +137,11 @@ SudokuGitter SudokuGenerator::generateNewTest() {
  * Generiert ein neues großes (5 in einem und verbunden an den ecken) vollständiges Sudoku.
  */
 SudokuGitter SudokuGenerator::generateNewBig() {
-    SudokuGenerator* mitteGen = new SudokuGenerator(9);
+    SudokuGenerator *mitteGen = new SudokuGenerator(9);
     SudokuGitter mitte = mitteGen->generateNew();
 
     printCelVecValPtr(mitte.getQuad(0, 0), "LinksObenUebernehmen");
-    SudokuGenerator* linksObenGen = new SudokuGenerator(9);
+    SudokuGenerator *linksObenGen = new SudokuGenerator(9);
     linksObenGen->gitter.setQuadPermanent(0, 0, mitte.getQuad(0, 0));
     SudokuGitter linksOben = linksObenGen->generateNewTest();
 
@@ -114,6 +155,15 @@ SudokuGitter SudokuGenerator::generateNewBig() {
  * @return Gibt an, ob ein gültiger Wert eingetragen werden kann (Backtracking)
  */
 bool SudokuGenerator::generateCell(unsigned int row, unsigned int column) {
+    unsigned int nextRow = row;
+    unsigned int nextCol = column + 1;
+    if (column == gitter.getElements()) {
+        nextCol = 0;
+        nextRow++;
+    }
+
+    if (gitter.getCell(row, column).isStatic)
+        return generateCell(nextRow, nextCol);
     vector<cell> ziffern(gitter.getElements());
     for (unsigned int i = 0; i < gitter.getElements(); i++)
         ziffern[i] = cell(i + 1);
@@ -165,12 +215,6 @@ bool SudokuGenerator::generateCell(unsigned int row, unsigned int column) {
 
     shuffle(begin(options), end(options), std::mt19937(std::random_device()()));
 
-    unsigned int nextRow = row;
-    unsigned int nextCol = column + 1;
-    if (column == gitter.getElements()) {
-        nextCol = 0;
-        nextRow++;
-    }
 
     for (unsigned int i = 0; i < options.size(); i++) {
         auto tmp = static_cast<unsigned int>(options[i]);

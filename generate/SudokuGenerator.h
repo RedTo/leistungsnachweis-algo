@@ -20,7 +20,10 @@ public:
     SudokuGitter generateNew();
 
     SudokuGitter generateNewBig();
+
+
 private:
+    void initWithQuad();
 
     bool generateCell(unsigned int row, unsigned int column);
 
@@ -31,6 +34,8 @@ private:
     void printCelVecValPtr(vector<vector<cell *>> vec, string name);
 
     SudokuGitter generateNewTest();
+
+    void initWithLine();
 };
 
 
