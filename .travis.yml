@@ -23,6 +23,6 @@ script:
   - cd ..
 
 after_success:
-  - coveralls
+  - coveralls --root . --exclude googletest
 
 
