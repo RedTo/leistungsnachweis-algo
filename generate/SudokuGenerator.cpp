@@ -16,7 +16,7 @@ SudokuGitter SudokuGenerator::generateNew() {
 
     unsigned int irow = 0;
 
-    if (gitter.getQuadWidth() == gitter.getQuadHeight())
+    if (gitter.getQuadWidth() == gitter.getQuadHeight() && gitter.getQuadWidth() == 3)
         initWithQuad();
     else {
         initWithLine();
