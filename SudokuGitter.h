@@ -7,23 +7,37 @@
 using namespace std;
 
 struct cell {
+    int rowIndex;
+    int colIndex;
     unsigned int value;
     bool isStatic = false;
 
     cell() {
+        cell(0, 0);
+    }
+
+    cell(int row, int col) {
+        rowIndex = row;
+        colIndex = col;
         value = 0;
     }
 
     cell(cell c, bool s) {
+        rowIndex = c.rowIndex;
+        colIndex = c.colIndex;
         value = c.value;
         isStatic = s;
     }
 
-    cell(unsigned int v) {
+    cell(int row, int col, unsigned int v) {
+        rowIndex = row;
+        colIndex = col;
         value = v;
     }
 
-    cell(unsigned int v, bool s) {
+    cell(int row, int col, unsigned int v, bool s) {
+        rowIndex = row;
+        colIndex = col;
         value = v;
         isStatic = s;
     }

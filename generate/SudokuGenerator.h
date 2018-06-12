@@ -27,6 +27,8 @@ private:
 
     bool generateCell(unsigned int row, unsigned int column);
 
+    bool generateCell(vector<tuple<unsigned int, unsigned int>> list);
+
     unsigned int hadErrorInRow(unsigned int row);
 
     void zerowRow(unsigned int row);

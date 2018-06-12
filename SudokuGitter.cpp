@@ -20,6 +20,11 @@ SudokuGitter::SudokuGitter(const unsigned int elements) : elements(elements),
                                                           quadWidth(
                                                                   elements / static_cast<const unsigned int>(std::sqrt(
                                                                           elements))) {
+    for (int r = 0; r < elements; ++r)
+        for (int c = 0; c < elements; ++c)
+            cells[r][c] = cell(r, c);
+
+
     cout << "Create sudoku with: " << elements << " elements." << endl;
     cout << "quad height: " << getQuadHeight() << " quad width:" << getQuadWidth() << endl;
 }
@@ -95,7 +100,7 @@ SudokuGitter::setQuadPermanent(unsigned int hoehenIndex, unsigned int breitenInx
  * @return Wert der Zelle
  */
 void SudokuGitter::setCell(unsigned int row, unsigned int column, unsigned int value) {
-    cells[row][column] = value;
+    cells[row][column].value = value;
 }
 
 /**
@@ -157,7 +162,7 @@ void SudokuGitter::printCellVec(vector<cell> vec, string name) {
  * @param vec auszugebende Vektor
  * @param name Name des Vektors
  */
-void SudokuGitter::printIntVec(vector<unsigned  int> vec, string name) {
+void SudokuGitter::printIntVec(vector<unsigned int> vec, string name) {
     // Print Original Vector
     std::cout << name << ": ";
     for (unsigned int i = 0; i < vec.size(); i++)
