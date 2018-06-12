@@ -56,6 +56,8 @@ public:
 
     void setQuadPermanent(unsigned int hoehenIndex, unsigned int breitenInxted, vector<vector<cell *>> quadToSet);
 
+    cell getCell(unsigned int row, unsigned int column);
+
 private:
 
     const unsigned int getElements() { return elements; }
@@ -70,7 +72,6 @@ private:
 
     vector<vector<cell *>> getQuad(unsigned int hoehenIndex, unsigned int breitenInxted);
 
-    cell getCell(unsigned int row, unsigned int column);
 };
 
 #endif //TESTPROJECT_SUDOKUGITTER_H

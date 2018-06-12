@@ -8,14 +8,15 @@
 #include "gtest/gtest.h"
 #include "../SudokuGitter.h"
 #include "../visual/ClassicSudokuVisualizer.h"
+#include "../generate/SudokuGenerator.h"
 
 namespace {
     static bool checkRows(SudokuGitter gitter, const unsigned int size) {
         for (unsigned int row = 0; row < size; row++) {
             std::set<unsigned int> elements;
             for (unsigned int column = 0; column < size; column++) {
-                SudokuGitter::cell item = gitter.getCell(row, column);
-                if (item.value != 0 && item.isStatic)
+                cell item = gitter.getCell(row, column);
+                if (item.value != 0)
                     elements.insert(item.value);
             }
 
@@ -32,7 +33,7 @@ namespace {
             std::set<int> elements;
             for (unsigned int row = 0; row < size; row++) {
                 auto item = gitter.getCell(row, column);
-                if (item.value != 0 && item.isStatic)
+                if (item.value != 0)
                     elements.insert(item.value);
             }
 
@@ -82,15 +83,15 @@ namespace {
     }
 
     static void buildAndAssert_NoZero(int elements) {
-        SudokuGitter gitter = SudokuGitter(elements);
-        gitter.generateNew();
+        SudokuGenerator generator = SudokuGenerator(elements);
+        SudokuGitter gitter = generator.generateNew();
 
         ASSERT_EQ(countZeros(gitter, elements), 0);
     }
 
     static void buildAndAssert_Elements(int size) {
-        SudokuGitter gitter = SudokuGitter(size);
-        gitter.generateNew();
+        SudokuGenerator generator = SudokuGenerator(size);
+        SudokuGitter gitter = generator.generateNew();
 
         ASSERT_TRUE(checkRows(gitter, size));
         ASSERT_TRUE(checkColumns(gitter, size));
@@ -98,8 +99,8 @@ namespace {
     }
 
     static void buildAndAssert_Solvable(int size) {
-        SudokuGitter gitter = SudokuGitter(size);
-        gitter.generateNew();
+        SudokuGenerator generator = SudokuGenerator(size);
+        SudokuGitter gitter = generator.generateNew();
         SudokuGitter solvable = gitter.getSolvable();
 
         ASSERT_EQ(countZeros(solvable, size), ceil((size * size) * 0.65));
@@ -120,8 +121,8 @@ namespace {
     }
 
     static void startVisualizer(int size) {
-        SudokuGitter gitter = SudokuGitter(size);
-        gitter.generateNew();
+        SudokuGenerator generator = SudokuGenerator(size);
+        SudokuGitter gitter = generator.generateNew();
         SudokuGitter solvable = gitter.getSolvable();
 
         ClassicSudokuVisualizer visualizer = ClassicSudokuVisualizer(gitter);
