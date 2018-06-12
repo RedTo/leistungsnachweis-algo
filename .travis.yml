@@ -18,11 +18,6 @@ before_script:
 script:
   - cmake --build .
   - ctest .
-  - ctest -T memcheck .
-  - cd ..
-  - cd doc
-  - doxygen
-  - make html
   - cd ..
 
 after_success:
