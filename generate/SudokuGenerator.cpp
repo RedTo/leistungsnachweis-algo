@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <iostream>
 #include <set>
+#include <tuple>
 #include "SudokuGenerator.h"
 
 
@@ -13,7 +14,6 @@
  * Generiert ein neues vollständiges Sudoku.
  */
 SudokuGitter SudokuGenerator::generateNew() {
-
     vector<cell> ziffern(elementCount);
 
     for (unsigned int i = 0; i < elementCount; i++)
@@ -25,48 +25,14 @@ SudokuGitter SudokuGenerator::generateNew() {
 
     gitter.print();
 
-    // erste Zeile wird ausgelassen
-    unsigned int irow = 1;
-    while (irow < elementCount) {
-        // Bei groeseren sudokus kann es tatsechlich auch mal keine loesung fuer eine Reihe geben -> vorherige Reihe neu machen
-        if (!generateCell(irow, 0)) {
-            // Todo: Reicht es immer nur eine reihe zurueck zu gehen?
-            unsigned int hadErrorsInRow = hadErrorInRow(irow);
-            errorInRow.push_back(irow);
-
-            // Bis zum ruecksprungpunkt 0er einsetzen (aktuelle row ist schon 0)
-            unsigned int jumpBackToRow = irow - 1;
-            while (irow > jumpBackToRow) {
-                irow--;
-                zerowRow(irow);
-            }
-
-            cout << "REDO last row! There is no solution for this row. Errors in this Row: " << hadErrorsInRow + 1
-                 << "\n";
-            gitter.print();
-        } else {
-            irow++;
-            gitter.print();
-        }
-    }
-    return SudokuGitter(gitter);
+    return generateNewFromRow(1);
 }
 
-SudokuGitter SudokuGenerator::generateNewTest() {
-
-    //vector<cell> ziffern(elementCount);
-//
-    //for (unsigned int i = 0; i < elementCount; i++)
-    //    ziffern[i] = cell(i + 1, true);
-//
-    ////geordnet erstelle Ziffern in erste Reihe einfügen.
-    //gitter.cells[0] = ziffern;
-    //shuffle(begin(gitter.cells[0]), end(gitter.cells[0]), std::mt19937(std::random_device()()));
-
-    gitter.print();
-
-    // erste Zeile wird ausgelassen
-    unsigned int irow = 0;
+/**
+ * Generiert ein neues Sudoku.
+ */
+SudokuGitter SudokuGenerator::generateNewFromRow(unsigned int startRow) {
+    unsigned int irow = startRow;
     while (irow < elementCount) {
         // Bei groeseren sudokus kann es tatsechlich auch mal keine loesung fuer eine Reihe geben -> vorherige Reihe neu machen
         if (!generateCell(irow, 0)) {
@@ -93,18 +59,18 @@ SudokuGitter SudokuGenerator::generateNewTest() {
 }
 
 /**
- * Generiert ein neues großes (5 in einem und verbunden an den ecken) vollständiges Sudoku.
+ * Generiert ein neues großes (2 in einem und verbunden an den ecken) vollständiges Sudoku.
  */
-SudokuGitter SudokuGenerator::generateNewBig() {
-    SudokuGenerator* mitteGen = new SudokuGenerator(9);
-    SudokuGitter mitte = mitteGen->generateNew();
+tuple<SudokuGitter, SudokuGitter> SudokuGenerator::generateNewBig() {
+    SudokuGenerator* untenRechtsGen = new SudokuGenerator(9);
+    SudokuGitter untenRechts = untenRechtsGen->generateNew();
 
-    printCelVecValPtr(mitte.getQuad(0, 0), "LinksObenUebernehmen");
+    printCelVecValPtr(untenRechts.getQuad(0, 0), "LinksObenUebernehmen");
     SudokuGenerator* linksObenGen = new SudokuGenerator(9);
-    linksObenGen->gitter.setQuadPermanent(0, 0, mitte.getQuad(0, 0));
-    SudokuGitter linksOben = linksObenGen->generateNewTest();
+    linksObenGen->gitter.setQuadPermanent(0, 0, untenRechts.getQuad(0, 0));
+    SudokuGitter linksOben = linksObenGen->generateNewFromRow(0);
 
-    return SudokuGitter(gitter);
+    return tuple<SudokuGitter, SudokuGitter>(linksOben, untenRechts);
 }
 
 /**
@@ -183,13 +149,20 @@ bool SudokuGenerator::generateCell(unsigned int row, unsigned int column) {
         SudokuGitter::printIntVec(options, "Options");
 
 
-        gitter.cells[row][column] = cell(tmp);
+        //gitter.cells[row][column] = cell(tmp);
+        gitter.setCell(row, column, tmp);
 
         if ((column == gitter.getElements() - 1) || generateCell(nextRow, nextCol)) {
             return true;
         }
     }
 
+    // Wenn feste variable gehe immer weiter da ist nix zu tun
+    if (gitter.cells[row][column].isStatic && generateCell(nextRow, nextCol)) {
+        return true;
+    }
+
+    // Fehler. Keine Option vorhanden um die Zelle zu setzen
     gitter.cells[row][column] = cell(0);
     return false;
 }

@@ -81,9 +81,7 @@ SudokuGitter::setQuadPermanent(unsigned int hoehenIndex, unsigned int breitenInx
 
     for (int heightIndex = 0; heightIndex < quadHeight; heightIndex++) {
         for (int widthIndex = 0; widthIndex < quadWidth; widthIndex++) {
-            //Setze als fest in beiden Gittern
-            cells[heightIndex + startHeightIndex][widthIndex + startWidthIndex].isStatic = true;
-            cells[heightIndex + startHeightIndex][widthIndex + startWidthIndex] = *quadToSet[heightIndex][widthIndex];
+            cells[heightIndex + startHeightIndex][widthIndex + startWidthIndex] = cell(*quadToSet[heightIndex][widthIndex], true);
         }
     }
 }
@@ -95,7 +93,9 @@ SudokuGitter::setQuadPermanent(unsigned int hoehenIndex, unsigned int breitenInx
  * @return Wert der Zelle
  */
 void SudokuGitter::setCell(unsigned int row, unsigned int column, unsigned int value) {
-    cells[row][column] = value;
+    //Wenn nicht fest setze neu
+    if (!cells[row][column].isStatic)
+        cells[row][column].value = value;
 }
 
 /**
@@ -105,7 +105,7 @@ void SudokuGitter::print() {
     for (unsigned int irow = 0; irow < getElements(); ++irow) {
         std::cout << " ";
         for (unsigned int icol = 0; icol < getElements(); ++icol) {
-            std::cout << getCellValue(icol, irow) << " ";
+            std::cout << getCellValue(irow, icol) << " ";
         }
         std::cout << std::endl; // << "--" << std::endl;
     }
