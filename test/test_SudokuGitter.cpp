@@ -39,7 +39,7 @@ TEST(SudokuGitter_Test, Sudoku12_No0) {
     const int elements = 12;
     buildAndAssert_NoZero(elements);
 }
-
+/*
 TEST(SudokuGitter_Test, Sudoku15_No0) {
     const int elements = 15;
     buildAndAssert_NoZero(elements);
@@ -48,4 +48,4 @@ TEST(SudokuGitter_Test, Sudoku15_No0) {
 TEST(SudokuGitter_Test, Sudoku16_No0) {
     const int elements = 16;
     buildAndAssert_NoZero(elements);
-}
+}*/
