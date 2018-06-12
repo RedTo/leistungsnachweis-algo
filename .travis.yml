@@ -27,7 +27,7 @@
   "after_success": [
     "cd ..",
     "ls -ahl",
-    "coveralls --root . --exclude \".*CMakeFiles.*\" --exclude .build --exclude googletest"
+    "coveralls --root . --exclude .build --exclude googletest --exclude test --gcov \"llvm-cov gcov\" --gcov-options '\-lp'"
   ]
 }
 
