@@ -1,36 +1,38 @@
-{
-  "os": "linux",
-  "dist": "trusty",
-  "sudo": false,
-  "language": "cpp",
-  "compiler": "clang",
-  "addons": {
-    "apt": {
-      "sources": [
-        "ubuntu-toolchain-r-test"
-      ],
-      "packages": [
-        "cmake"
-      ]
-    }
-  },
-  "before_install": [
-    "pip install --user cpp-coveralls"
-  ],
-  "before_script": [
-    "mkdir build",
-    "cd build"
-    "cmake -DENABLE_COVERAGE=ON ..",
-  ],
-  "script": [
-    "cmake --build ."
-    "mkdir output",
-    "ctest ."
-  ],
   "global_env": "GH_REPO_NAME=leistungsnachweis-algo DOXYFILE=$TRAVIS_BUILD_DIR/Doxyfile GH_REPO_REF=github.com/ob-algdatii-ss18/leistungsnachweis-algo.git",
   "after_success": [
     "cd ..",
     "coveralls --gcov-options '\-lp'"
   ]
 }
+
+language: cpp
+compiler: clang
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+
+before_install:
+  - pip install --user cpp-coveralls
+
+before_script:
+  - mkdir build
+  - cd build
+  - cmake -DENABLE_COVERAGE=ON ..
+  - mkdir output
+
+script:
+  - cmake --build .
+  - ctest .
+  - ctest -T memcheck .
+  - cd ..
+  - cd doc
+  - doxygen
+  - make html
+  - cd ..
+
+after_success:
+  - coveralls --exclude build/CMakeFiles/ --exclude build/gtest/ --exclude build/args/ --gcov "llvm-cov gcov" --gcov-options '\-lp'
+
 
