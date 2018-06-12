@@ -82,8 +82,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Klassen</a> &#124;
 <a href="#pub-methods">Öffentliche Methoden</a> &#124;
+<a href="#pub-static-methods">Öffentliche, statische Methoden</a> &#124;
 <a href="#friends">Freundbeziehungen</a> &#124;
 <a href="class_sudoku_gitter-members.html">Aufstellung aller Elemente</a>  </div>
   <div class="headertitle">
@@ -93,32 +93,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 
 <p><code>#include &lt;<a class="el" href="_sudoku_gitter_8h_source.html">SudokuGitter.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Klassen</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_sudoku_gitter_1_1cell.html">cell</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Öffentliche Methoden</h2></td></tr>
 <tr class="memitem:ad3443d5846cba4cef8fdfebc46f16c0b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sudoku_gitter.html#ad3443d5846cba4cef8fdfebc46f16c0b">SudokuGitter</a> (unsigned int elements)</td></tr>
 <tr class="separator:ad3443d5846cba4cef8fdfebc46f16c0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe38684eb8b3d8b7d4d720dd462173c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_sudoku_gitter_1_1cell.html">cell</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sudoku_gitter.html#afe38684eb8b3d8b7d4d720dd462173c0">getCell</a> (unsigned int row, unsigned int column)</td></tr>
-<tr class="separator:afe38684eb8b3d8b7d4d720dd462173c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af096bfe6c7b8299f33f885ab69d76217"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sudoku_gitter.html#af096bfe6c7b8299f33f885ab69d76217">setCell</a> (unsigned int row, unsigned int column, <a class="el" href="struct_sudoku_gitter_1_1cell.html">cell</a> value)</td></tr>
-<tr class="separator:af096bfe6c7b8299f33f885ab69d76217"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cd2a95fea6f56d295fcc4bb11412c2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sudoku_gitter.html#a1cd2a95fea6f56d295fcc4bb11412c2e">generateNew</a> ()</td></tr>
-<tr class="separator:a1cd2a95fea6f56d295fcc4bb11412c2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedc91eeba50722d3b4deb0609a27aedf"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sudoku_gitter.html#aedc91eeba50722d3b4deb0609a27aedf">getCellValue</a> (unsigned int row, unsigned int column)</td></tr>
+<tr class="separator:aedc91eeba50722d3b4deb0609a27aedf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7fa54638ade311994bd8f6433df8ff0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sudoku_gitter.html#aa7fa54638ade311994bd8f6433df8ff0">setCell</a> (unsigned int row, unsigned int column, unsigned int value)</td></tr>
+<tr class="separator:aa7fa54638ade311994bd8f6433df8ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a771332a8a5eff5e1917538adfb237d0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sudoku_gitter.html#a771332a8a5eff5e1917538adfb237d0e">print</a> ()</td></tr>
 <tr class="separator:a771332a8a5eff5e1917538adfb237d0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad089a50f3435a3eb025aacab74b8fbed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad089a50f3435a3eb025aacab74b8fbed"></a>
 <a class="el" href="class_sudoku_gitter.html">SudokuGitter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getSolvable</b> ()</td></tr>
 <tr class="separator:ad089a50f3435a3eb025aacab74b8fbed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bb7fd934b5b87646bb09b01e80fea8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sudoku_gitter.html#a2bb7fd934b5b87646bb09b01e80fea8b">setQuadPermanent</a> (unsigned int hoehenIndex, unsigned int breitenInxted, vector&lt; vector&lt; <a class="el" href="structcell.html">cell</a> * &gt;&gt; quadToSet)</td></tr>
+<tr class="separator:a2bb7fd934b5b87646bb09b01e80fea8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Öffentliche, statische Methoden</h2></td></tr>
+<tr class="memitem:a8bbf319c21d2cd6111d36082d3abf78d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sudoku_gitter.html#a8bbf319c21d2cd6111d36082d3abf78d">printCellVec</a> (vector&lt; <a class="el" href="structcell.html">cell</a> &gt; vec, string name)</td></tr>
+<tr class="separator:a8bbf319c21d2cd6111d36082d3abf78d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8496c0d45f5a35e97703787c6756330b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sudoku_gitter.html#a8496c0d45f5a35e97703787c6756330b">printIntVec</a> (vector&lt; unsigned int &gt; vec, string name)</td></tr>
+<tr class="separator:a8496c0d45f5a35e97703787c6756330b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Freundbeziehungen</h2></td></tr>
 <tr class="memitem:a3f8b3753aa8e1441912c8724f574e730"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f8b3753aa8e1441912c8724f574e730"></a>
 class&#160;</td><td class="memItemRight" valign="bottom"><b>ClassicSudokuVisualizer</b></td></tr>
 <tr class="separator:a3f8b3753aa8e1441912c8724f574e730"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf5a078b7eb0c0ad6f5ed7ec84594d48"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf5a078b7eb0c0ad6f5ed7ec84594d48"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>SudokuGenerator</b></td></tr>
+<tr class="separator:aaf5a078b7eb0c0ad6f5ed7ec84594d48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Ausführliche Beschreibung</h2>
 <div class="textblock"><p>Klasse für ein n x n Sudoku Gitter </p>
@@ -155,28 +160,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ClassicSudokuVisuali
 </div>
 </div>
 <h2 class="groupheader">Dokumentation der Elementfunktionen</h2>
-<a class="anchor" id="a1cd2a95fea6f56d295fcc4bb11412c2e"></a>
+<a class="anchor" id="aedc91eeba50722d3b4deb0609a27aedf"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SudokuGitter::generateNew </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Generiert ein neues vollständiges Sudoku. </p>
-
-</div>
-</div>
-<a class="anchor" id="afe38684eb8b3d8b7d4d720dd462173c0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_sudoku_gitter_1_1cell.html">SudokuGitter::cell</a> SudokuGitter::getCell </td>
+          <td class="memname">unsigned int SudokuGitter::getCellValue </td>
           <td>(</td>
           <td class="paramtype">unsigned int&#160;</td>
           <td class="paramname"><em>row</em>, </td>
@@ -222,7 +211,91 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ClassicSudokuVisuali
 
 </div>
 </div>
-<a class="anchor" id="af096bfe6c7b8299f33f885ab69d76217"></a>
+<a class="anchor" id="a8bbf319c21d2cd6111d36082d3abf78d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SudokuGitter::printCellVec </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; <a class="el" href="structcell.html">cell</a> &gt;&#160;</td>
+          <td class="paramname"><em>vec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gibt einen vector auf der Commandline aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>auszugebende Vektor </td></tr>
+    <tr><td class="paramname">name</td><td>Name des Vektors </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a8496c0d45f5a35e97703787c6756330b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SudokuGitter::printIntVec </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; unsigned int &gt;&#160;</td>
+          <td class="paramname"><em>vec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Gibt einen vector auf der Commandline aus. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vec</td><td>auszugebende Vektor </td></tr>
+    <tr><td class="paramname">name</td><td>Name des Vektors </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa7fa54638ade311994bd8f6433df8ff0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -241,7 +314,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ClassicSudokuVisuali
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_sudoku_gitter_1_1cell.html">cell</a>&#160;</td>
+          <td class="paramtype">unsigned int&#160;</td>
           <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
@@ -260,6 +333,47 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>ClassicSudokuVisuali
   </dd>
 </dl>
 <dl class="section return"><dt>Rückgabe</dt><dd>Wert der Zelle </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2bb7fd934b5b87646bb09b01e80fea8b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SudokuGitter::setQuadPermanent </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>hoehenIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>breitenInxted</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; vector&lt; <a class="el" href="structcell.html">cell</a> * &gt;&gt;&#160;</td>
+          <td class="paramname"><em>quadToSet</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Setze ein quad in einem Gitter permanent. </p>
+<dl class="params"><dt>Parameter</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hoehenIndex</td><td></td></tr>
+    <tr><td class="paramname">breitenInxted</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Rückgabe</dt><dd>Gefordertes Quad des Gitters </dd></dl>
 
 </div>
 </div>
