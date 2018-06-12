@@ -17,8 +17,8 @@ public:
     void createHTML(std::string path);
 
 private:
-    const std::string  createStyle();
-    const std::string  createCells();
+    const std::string createStyle();
+    const std::string createCells();
     const std::string createBorderBottomStyle();
     const std::string createBorderTopStyle();
     const std::string createBorderRightStyle();

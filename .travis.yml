@@ -34,7 +34,7 @@ env:
     - GH_REPO_REF=github.com/ob-algdatii-ss18/leistungsnachweis-algo.git
 
 after_success:
-  - coveralls --root . --exclude googletest --exclude test
+  - coveralls --root . --exclude googletest --exclude test --exclude "build/CMakeFiles/feature_tests.*"
   - cd $TRAVIS_BUILD_DIR
   - chmod +x generateDocumentationAndDeploy.sh
   - ./generateDocumentationAndDeploy.sh
