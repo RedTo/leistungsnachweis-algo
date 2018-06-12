@@ -23,6 +23,6 @@ script:
   - cd ..
 
 after_success:
-  - coveralls --gcov "llvm-cov gcov" --gcov-options '\-lp'
+  - coveralls
 
 
