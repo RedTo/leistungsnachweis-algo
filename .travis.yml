@@ -26,7 +26,7 @@
   "global_env": "GH_REPO_NAME=leistungsnachweis-algo DOXYFILE=$TRAVIS_BUILD_DIR/Doxyfile GH_REPO_REF=github.com/ob-algdatii-ss18/leistungsnachweis-algo.git",
   "after_success": [
     "ls -ahl",
-    "coveralls --root . --exclude \".*CMakeFiles.*\""
+    "coveralls --root . --exclude \".*CMakeFiles.*\" --exclude .build --exclude googletest"
   ]
 }
 
