@@ -105,7 +105,7 @@ void SudokuGitter::print() {
     for (unsigned int irow = 0; irow < getElements(); ++irow) {
         std::cout << " ";
         for (unsigned int icol = 0; icol < getElements(); ++icol) {
-            std::cout << getCellValue(icol, irow) << " ";
+            std::cout << getCellValue(irow, icol) << " ";
         }
         std::cout << std::endl; // << "--" << std::endl;
     }
