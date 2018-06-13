@@ -5,31 +5,38 @@
 
 {\ttfamily \#include $<$Sudoku\-Gitter.\-h$>$}
 
-\subsection*{Klassen}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{struct_sudoku_gitter_1_1cell}{cell}
-\end{DoxyCompactItemize}
 \subsection*{Öffentliche Methoden}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{class_sudoku_gitter_ad3443d5846cba4cef8fdfebc46f16c0b}{Sudoku\-Gitter} (unsigned int elements)
 \item 
-\hyperlink{struct_sudoku_gitter_1_1cell}{cell} \hyperlink{class_sudoku_gitter_afe38684eb8b3d8b7d4d720dd462173c0}{get\-Cell} (unsigned int row, unsigned int column)
+unsigned int \hyperlink{class_sudoku_gitter_aedc91eeba50722d3b4deb0609a27aedf}{get\-Cell\-Value} (unsigned int row, unsigned int column)
 \item 
-void \hyperlink{class_sudoku_gitter_af096bfe6c7b8299f33f885ab69d76217}{set\-Cell} (unsigned int row, unsigned int column, \hyperlink{struct_sudoku_gitter_1_1cell}{cell} value)
-\item 
-void \hyperlink{class_sudoku_gitter_a1cd2a95fea6f56d295fcc4bb11412c2e}{generate\-New} ()
+void \hyperlink{class_sudoku_gitter_aa7fa54638ade311994bd8f6433df8ff0}{set\-Cell} (unsigned int row, unsigned int column, unsigned int value)
 \item 
 void \hyperlink{class_sudoku_gitter_a771332a8a5eff5e1917538adfb237d0e}{print} ()
 \item 
 \hypertarget{class_sudoku_gitter_ad089a50f3435a3eb025aacab74b8fbed}{\hyperlink{class_sudoku_gitter}{Sudoku\-Gitter} {\bfseries get\-Solvable} ()}\label{class_sudoku_gitter_ad089a50f3435a3eb025aacab74b8fbed}
 
+\item 
+void \hyperlink{class_sudoku_gitter_a2bb7fd934b5b87646bb09b01e80fea8b}{set\-Quad\-Permanent} (unsigned int hoehen\-Index, unsigned int breiten\-Inxted, vector$<$ vector$<$ \hyperlink{structcell}{cell} $\ast$ $>$$>$ quad\-To\-Set)
+\item 
+\hyperlink{structcell}{cell} \hyperlink{class_sudoku_gitter_a4264ea5ac6602a4b7dd6cdaf7c98f28f}{get\-Cell} (unsigned int row, unsigned int column)
+\end{DoxyCompactItemize}
+\subsection*{Öffentliche, statische Methoden}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{class_sudoku_gitter_a8bbf319c21d2cd6111d36082d3abf78d}{print\-Cell\-Vec} (vector$<$ \hyperlink{structcell}{cell} $>$ vec, string name)
+\item 
+static void \hyperlink{class_sudoku_gitter_a8496c0d45f5a35e97703787c6756330b}{print\-Int\-Vec} (vector$<$ unsigned int $>$ vec, string name)
 \end{DoxyCompactItemize}
 \subsection*{Freundbeziehungen}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{class_sudoku_gitter_a3f8b3753aa8e1441912c8724f574e730}{class {\bfseries Classic\-Sudoku\-Visualizer}}\label{class_sudoku_gitter_a3f8b3753aa8e1441912c8724f574e730}
+
+\item 
+\hypertarget{class_sudoku_gitter_aaf5a078b7eb0c0ad6f5ed7ec84594d48}{class {\bfseries Sudoku\-Generator}}\label{class_sudoku_gitter_aaf5a078b7eb0c0ad6f5ed7ec84594d48}
 
 \end{DoxyCompactItemize}
 
@@ -53,21 +60,32 @@ Konstruktor um ein Sudoku zu erstellen
 
 
 \subsection{Dokumentation der Elementfunktionen}
-\hypertarget{class_sudoku_gitter_a1cd2a95fea6f56d295fcc4bb11412c2e}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!generate\-New@{generate\-New}}
-\index{generate\-New@{generate\-New}!SudokuGitter@{Sudoku\-Gitter}}
-\subsubsection[{generate\-New}]{\setlength{\rightskip}{0pt plus 5cm}void Sudoku\-Gitter\-::generate\-New (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}\label{class_sudoku_gitter_a1cd2a95fea6f56d295fcc4bb11412c2e}
-Generiert ein neues vollständiges Sudoku. \hypertarget{class_sudoku_gitter_afe38684eb8b3d8b7d4d720dd462173c0}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!get\-Cell@{get\-Cell}}
+\hypertarget{class_sudoku_gitter_a4264ea5ac6602a4b7dd6cdaf7c98f28f}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!get\-Cell@{get\-Cell}}
 \index{get\-Cell@{get\-Cell}!SudokuGitter@{Sudoku\-Gitter}}
-\subsubsection[{get\-Cell}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Sudoku\-Gitter\-::cell} Sudoku\-Gitter\-::get\-Cell (
+\subsubsection[{get\-Cell}]{\setlength{\rightskip}{0pt plus 5cm}{\bf cell} Sudoku\-Gitter\-::get\-Cell (
 \begin{DoxyParamCaption}
 \item[{unsigned int}]{row, }
 \item[{unsigned int}]{column}
 \end{DoxyParamCaption}
-)}}\label{class_sudoku_gitter_afe38684eb8b3d8b7d4d720dd462173c0}
+)}}\label{class_sudoku_gitter_a4264ea5ac6602a4b7dd6cdaf7c98f28f}
+Gibt den Wert einer Zelle zurück. 
+\begin{DoxyParams}{Parameter}
+{\em row} & Zeilenposition \\
+\hline
+{\em column} & Spaltenposition \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Rückgabe}
+Wert der Zelle 
+\end{DoxyReturn}
+\hypertarget{class_sudoku_gitter_aedc91eeba50722d3b4deb0609a27aedf}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!get\-Cell\-Value@{get\-Cell\-Value}}
+\index{get\-Cell\-Value@{get\-Cell\-Value}!SudokuGitter@{Sudoku\-Gitter}}
+\subsubsection[{get\-Cell\-Value}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Sudoku\-Gitter\-::get\-Cell\-Value (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{row, }
+\item[{unsigned int}]{column}
+\end{DoxyParamCaption}
+)}}\label{class_sudoku_gitter_aedc91eeba50722d3b4deb0609a27aedf}
 Gibt den Wert einer Zelle zurück. 
 \begin{DoxyParams}{Parameter}
 {\em row} & Zeilenposition \\
@@ -85,15 +103,45 @@ Wert der Zelle
 {}
 \end{DoxyParamCaption}
 )}}\label{class_sudoku_gitter_a771332a8a5eff5e1917538adfb237d0e}
-Gibt das Sudoku auf der Commandline aus. \hypertarget{class_sudoku_gitter_af096bfe6c7b8299f33f885ab69d76217}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!set\-Cell@{set\-Cell}}
+Gibt das Sudoku auf der Commandline aus. \hypertarget{class_sudoku_gitter_a8bbf319c21d2cd6111d36082d3abf78d}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!print\-Cell\-Vec@{print\-Cell\-Vec}}
+\index{print\-Cell\-Vec@{print\-Cell\-Vec}!SudokuGitter@{Sudoku\-Gitter}}
+\subsubsection[{print\-Cell\-Vec}]{\setlength{\rightskip}{0pt plus 5cm}void Sudoku\-Gitter\-::print\-Cell\-Vec (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf cell} $>$}]{vec, }
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_sudoku_gitter_a8bbf319c21d2cd6111d36082d3abf78d}
+Gibt einen vector auf der Commandline aus. 
+\begin{DoxyParams}{Parameter}
+{\em vec} & auszugebende Vektor \\
+\hline
+{\em name} & Name des Vektors \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_sudoku_gitter_a8496c0d45f5a35e97703787c6756330b}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!print\-Int\-Vec@{print\-Int\-Vec}}
+\index{print\-Int\-Vec@{print\-Int\-Vec}!SudokuGitter@{Sudoku\-Gitter}}
+\subsubsection[{print\-Int\-Vec}]{\setlength{\rightskip}{0pt plus 5cm}void Sudoku\-Gitter\-::print\-Int\-Vec (
+\begin{DoxyParamCaption}
+\item[{vector$<$ unsigned int $>$}]{vec, }
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_sudoku_gitter_a8496c0d45f5a35e97703787c6756330b}
+Gibt einen vector auf der Commandline aus. 
+\begin{DoxyParams}{Parameter}
+{\em vec} & auszugebende Vektor \\
+\hline
+{\em name} & Name des Vektors \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_sudoku_gitter_aa7fa54638ade311994bd8f6433df8ff0}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!set\-Cell@{set\-Cell}}
 \index{set\-Cell@{set\-Cell}!SudokuGitter@{Sudoku\-Gitter}}
 \subsubsection[{set\-Cell}]{\setlength{\rightskip}{0pt plus 5cm}void Sudoku\-Gitter\-::set\-Cell (
 \begin{DoxyParamCaption}
 \item[{unsigned int}]{row, }
 \item[{unsigned int}]{column, }
-\item[{{\bf cell}}]{value}
+\item[{unsigned int}]{value}
 \end{DoxyParamCaption}
-)}}\label{class_sudoku_gitter_af096bfe6c7b8299f33f885ab69d76217}
+)}}\label{class_sudoku_gitter_aa7fa54638ade311994bd8f6433df8ff0}
 Gibt den Wert einer Zelle zurück. 
 \begin{DoxyParams}{Parameter}
 {\em row} & Zeilenposition \\
@@ -103,6 +151,25 @@ Gibt den Wert einer Zelle zurück.
 \end{DoxyParams}
 \begin{DoxyReturn}{Rückgabe}
 Wert der Zelle 
+\end{DoxyReturn}
+\hypertarget{class_sudoku_gitter_a2bb7fd934b5b87646bb09b01e80fea8b}{\index{Sudoku\-Gitter@{Sudoku\-Gitter}!set\-Quad\-Permanent@{set\-Quad\-Permanent}}
+\index{set\-Quad\-Permanent@{set\-Quad\-Permanent}!SudokuGitter@{Sudoku\-Gitter}}
+\subsubsection[{set\-Quad\-Permanent}]{\setlength{\rightskip}{0pt plus 5cm}void Sudoku\-Gitter\-::set\-Quad\-Permanent (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{hoehen\-Index, }
+\item[{unsigned int}]{breiten\-Inxted, }
+\item[{vector$<$ vector$<$ {\bf cell} $\ast$ $>$$>$}]{quad\-To\-Set}
+\end{DoxyParamCaption}
+)}}\label{class_sudoku_gitter_a2bb7fd934b5b87646bb09b01e80fea8b}
+Setze ein quad in einem Gitter permanent. 
+\begin{DoxyParams}{Parameter}
+{\em hoehen\-Index} & \\
+\hline
+{\em breiten\-Inxted} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Rückgabe}
+Gefordertes Quad des Gitters 
 \end{DoxyReturn}
 
 
