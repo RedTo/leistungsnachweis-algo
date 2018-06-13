@@ -120,7 +120,7 @@ SudokuGitter SudokuGitter::getSolvable() {
     vector<unsigned int> permutation(globalElements);
 
     for (int i = 0; i < globalElements; i++) {
-        if (i < globalElements * 0.33)
+        if (i < ceil(globalElements * 0.30))
             permutation[i] = 1;
         else
             permutation[i] = 0;
