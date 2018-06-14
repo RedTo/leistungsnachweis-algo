@@ -9,6 +9,7 @@
 #include "../SudokuGitter.h"
 #include "../visual/ClassicSudokuVisualizer.h"
 #include "../generate/SudokuGenerator.h"
+#include "../visual/BigSudokuVisualizer.h"
 
 namespace {
     static bool checkRows(SudokuGitter gitter, const unsigned int size) {
@@ -126,6 +127,16 @@ namespace {
         SudokuGitter solvable = gitter.getSolvable();
 
         ClassicSudokuVisualizer visualizer = ClassicSudokuVisualizer(gitter);
+        visualizer.createHTML("output/sudoku" + std::to_string(size) + ".html");
+    }
+
+    static void startBigVisualizer(int size) {
+        SudokuGenerator generator = SudokuGenerator(size);
+        SudokuGitter gitter1 = generator.generateNew().getSolvable();
+        SudokuGitter gitter2 = generator.generateNew().getSolvable();
+        tuple<SudokuGitter, SudokuGitter> bigGitter = std::make_tuple(gitter1, gitter2);
+
+        BigSudokuVisualizer visualizer = BigSudokuVisualizer(bigGitter);
         visualizer.createHTML("output/sudoku" + std::to_string(size) + ".html");
     }
 }

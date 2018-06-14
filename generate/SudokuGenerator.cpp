@@ -65,12 +65,12 @@ tuple<SudokuGitter, SudokuGitter> SudokuGenerator::generateNewBig() {
     SudokuGenerator* untenRechtsGen = new SudokuGenerator(9);
     SudokuGitter untenRechts = untenRechtsGen->generateNew();
 
-    printCelVecValPtr(untenRechts.getQuad(0, 0), "LinksObenUebernehmen");
+    printCelVecValPtr(untenRechts.getQuad(2, 2), "LinksObenUebernehmen");
     SudokuGenerator* linksObenGen = new SudokuGenerator(9);
-    linksObenGen->gitter.setQuadPermanent(0, 0, untenRechts.getQuad(0, 0));
+    linksObenGen->gitter.setQuadPermanent(0, 0, untenRechts.getQuad(2, 2));
     SudokuGitter linksOben = linksObenGen->generateNewFromRow(0);
 
-    return tuple<SudokuGitter, SudokuGitter>(linksOben, untenRechts);
+    return tuple<SudokuGitter, SudokuGitter>(untenRechts,linksOben);
 }
 
 /**

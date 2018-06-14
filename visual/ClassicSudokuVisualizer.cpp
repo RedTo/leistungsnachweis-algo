@@ -83,15 +83,13 @@ const std::string ClassicSudokuVisualizer::createStyle() {
 const std::string ClassicSudokuVisualizer::createCells() {
     unsigned int size = gitter.getElements();
 
-    SudokuGitter solvable = gitter.getSolvable();
-
     std::string cells = "";
 
     unsigned int counter = 0;
     for (unsigned int row = 0; row < size; row++) {
         cells.append("<tr>");
         for (unsigned int col = 0; col < size; col++) {
-            unsigned int num = solvable.getCell(row, col).value;
+            unsigned int num = gitter.getCell(row, col).value;
             if (num > 0) {
                 cells.append("<td><input id='cell-");
                 cells.append(std::to_string(counter));
@@ -129,13 +127,3 @@ void ClassicSudokuVisualizer::createHTML(std::string name) {
     htmlFile << html;
     htmlFile.close();
 }
-
-//int main() {
-//    SudokuGitter gitter = SudokuGitter(9);
-//    gitter.generateNew();
-//
-//    ClassicSudokuVisualizer visualizer = ClassicSudokuVisualizer(gitter);
-//    visualizer.createHTML("index.html");
-//}
-
-

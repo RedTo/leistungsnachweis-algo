@@ -68,6 +68,8 @@ private:
 
     friend class ClassicSudokuVisualizer;
 
+    friend class BigSudokuVisualizer;
+
     friend class SudokuGenerator;
 
     vector<vector<cell *>> getQuad(unsigned int hoehenIndex, unsigned int breitenInxted);
