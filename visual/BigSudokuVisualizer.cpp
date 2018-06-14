@@ -14,7 +14,7 @@ const std::string BigSudokuVisualizer::createBorderBottomStyle(SudokuGitter gitt
     while (h < size) {
         unsigned int iStart = h * size;
         for (unsigned int i = iStart; i < iStart + size; i++) {
-            border_bottom.append("#cell-");
+            border_bottom.append("#bigCell-");
             border_bottom.append(std::to_string(i));
             border_bottom.append(", ");
         }
@@ -33,7 +33,7 @@ const std::string BigSudokuVisualizer::createBorderTopStyle(SudokuGitter gitter)
     while (h < size) {
         unsigned int iStart = h * size;
         for (unsigned int i = iStart; i < iStart + size; i++) {
-            border_top.append("#cell-");
+            border_top.append("#bigCell-");
             border_top.append(std::to_string(i));
             border_top.append(", ");
         }
@@ -49,7 +49,7 @@ const std::string BigSudokuVisualizer::createBorderLeftStyle(SudokuGitter gitter
     unsigned int elements = size * size;
     std::string border_left = "";
     for (unsigned int i = 0; i < elements; i += gitter.getQuadWidth()) {
-        border_left.append("#cell-");
+        border_left.append("#bigCell-");
         border_left.append(std::to_string(i));
         border_left.append(", ");
     }
@@ -63,7 +63,7 @@ const std::string BigSudokuVisualizer::createBorderRightStyle(SudokuGitter gitte
     unsigned int elements = size * size;
     std::string border_right = "";
     for (unsigned int i = gitter.getQuadWidth() - 1; i < elements; i += gitter.getQuadWidth()) {
-        border_right.append("#cell-");
+        border_right.append("#bigCell-");
         border_right.append(std::to_string(i));
         border_right.append(", ");
     }
@@ -100,13 +100,13 @@ const std::string BigSudokuVisualizer::createCells(SudokuGitter gitter1, SudokuG
         for (unsigned int col = 0; col < size; col++) {
             unsigned int num = gitter1.getCell(row, col).value;
             if (num > 0) {
-                cells.append("<td><input id='cell-");
+                cells.append("<td><input id='bigCell-");
                 cells.append(std::to_string(counter));
                 cells.append("' type='text' value='");
                 cells.append(std::to_string(num));
                 cells.append("' disabled></td>");
             } else {
-                cells.append("<td><input id='cell-");
+                cells.append("<td><input id='bigCell-");
                 cells.append(std::to_string(counter));
                 cells.append("' type='text'></td>");
             }
@@ -121,13 +121,13 @@ const std::string BigSudokuVisualizer::createCells(SudokuGitter gitter1, SudokuG
         for (unsigned int col = 0; col < size; col++) {
             unsigned int num = gitter1.getCell(times + rowspan_size, col).value;
             if (num > 0) {
-                cells.append("<td><input id='cell-");
+                cells.append("<td><input id='bigCell-");
                 cells.append(std::to_string(counter));
                 cells.append("' type='text' value='");
                 cells.append(std::to_string(num));
                 cells.append("' disabled></td>");
             } else {
-                cells.append("<td><input id='cell-");
+                cells.append("<td><input id='bigCell-");
                 cells.append(std::to_string(counter));
                 cells.append("' type='text'></td>");
             }
@@ -141,13 +141,13 @@ const std::string BigSudokuVisualizer::createCells(SudokuGitter gitter1, SudokuG
         for (col; col < size; col++) {
             unsigned int num = gitter2.getCell(times, col).value;
             if (num > 0) {
-                cells.append("<td><input id='cell-");
+                cells.append("<td><input id='bigCell-");
                 cells.append(std::to_string(counter2));
                 cells.append("' type='text' value='");
                 cells.append(std::to_string(num));
                 cells.append("' disabled></td>");
             } else {
-                cells.append("<td><input id='cell-");
+                cells.append("<td><input id='bigCell-");
                 cells.append(std::to_string(counter2));
                 cells.append("' type='text'></td>");
             }
@@ -161,13 +161,13 @@ const std::string BigSudokuVisualizer::createCells(SudokuGitter gitter1, SudokuG
         for (unsigned int col = 0; col < size; col++) {
             unsigned int num = gitter2.getCell(row, col).value;
             if (num > 0) {
-                cells.append("<td><input id='cell-");
+                cells.append("<td><input id='bigCell-");
                 cells.append(std::to_string(counter2));
                 cells.append("' type='text' value='");
                 cells.append(std::to_string(num));
                 cells.append("' disabled></td>");
             } else {
-                cells.append("<td><input id='cell-");
+                cells.append("<td><input id='bigCell-");
                 cells.append(std::to_string(counter2));
                 cells.append("' type='text'></td>");
             }

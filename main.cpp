@@ -55,7 +55,7 @@ void visualizeBigSudoku(tuple<SudokuGitter, SudokuGitter> bigGitter){
 }
 
 int main() {
-    int elements = 4;
+    int elements = 9;
     SudokuGitter gitter = mainClassicSudoku(elements);
     visualizeClassicSudoku(gitter);
 

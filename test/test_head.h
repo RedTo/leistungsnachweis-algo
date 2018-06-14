@@ -126,7 +126,7 @@ namespace {
         SudokuGitter gitter = generator.generateNew();
         SudokuGitter solvable = gitter.getSolvable();
 
-        ClassicSudokuVisualizer visualizer = ClassicSudokuVisualizer(gitter);
+        ClassicSudokuVisualizer visualizer = ClassicSudokuVisualizer(solvable);
         visualizer.createHTML("output/sudoku" + std::to_string(size) + ".html");
     }
 
