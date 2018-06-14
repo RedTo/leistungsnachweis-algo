@@ -16,14 +16,14 @@ Warning: ignoring unsupported tag `PLANTUML_INCLUDE_PATH  =' at line 2430, file 
 warning: The selected output language "german" has not been updated
 since release 1.8.4.  As a result some sentences may appear in English.
 
-/home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.h:9: warning: Compound cell is not documented.
-/home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.h:17: warning: Member cell(cell c, bool s) (function) of class cell is not documented.
-/home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.h:22: warning: Member cell(unsigned int v) (function) of class cell is not documented.
-/home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.h:26: warning: Member cell(unsigned int v, bool s) (function) of class cell is not documented.
-/home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.h:10: warning: Member value (variable) of class cell is not documented.
-/home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.h:11: warning: Member isStatic (variable) of class cell is not documented.
-/home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.h:51: warning: Member getSolvable() (function) of class SudokuGitter is not documented.
-/home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.cpp:90: warning: The following parameters of SudokuGitter::setCell(unsigned int row, unsigned int column, unsigned int value) are not documented:
+/home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.h:10: warning: Compound cell is not documented.
+/home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.h:18: warning: Member cell(cell c, bool s) (function) of class cell is not documented.
+/home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.h:23: warning: Member cell(unsigned int v) (function) of class cell is not documented.
+/home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.h:27: warning: Member cell(unsigned int v, bool s) (function) of class cell is not documented.
+/home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.h:11: warning: Member value (variable) of class cell is not documented.
+/home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.h:12: warning: Member isStatic (variable) of class cell is not documented.
+/home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.h:52: warning: Member getSolvable() (function) of class SudokuGitter is not documented.
+/home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.cpp:91: warning: The following parameters of SudokuGitter::setCell(unsigned int row, unsigned int column, unsigned int value) are not documented:
   parameter 'value'
 /home/travis/build/ob-algdatii-ss18/leistungsnachweis-algo/SudokuGitter.cpp:70: warning: The following parameters of SudokuGitter::setQuadPermanent(unsigned int hoehenIndex, unsigned int breitenInxted, vector< vector< cell * >> quadToSet) are not documented:
   parameter 'quadToSet'
@@ -122,5 +122,5 @@ Generating file index...
 Generating file member index...
 Generating example index...
 finalizing index lists...
-lookup cache used 48/65536 hits=219 misses=50
+lookup cache used 53/65536 hits=226 misses=55
 finished...
