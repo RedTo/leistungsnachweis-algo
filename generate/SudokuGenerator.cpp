@@ -62,15 +62,17 @@ SudokuGitter SudokuGenerator::generateNewFromRow(unsigned int startRow) {
  * Generiert ein neues großes (2 in einem und verbunden an den ecken) vollständiges Sudoku.
  */
 tuple<SudokuGitter, SudokuGitter> SudokuGenerator::generateNewBig() {
-    SudokuGenerator* untenRechtsGen = new SudokuGenerator(9);
+    SudokuGenerator *untenRechtsGen = new SudokuGenerator(elementCount);
     SudokuGitter untenRechts = untenRechtsGen->generateNew();
 
-    printCelVecValPtr(untenRechts.getQuad(2, 2), "LinksObenUebernehmen");
-    SudokuGenerator* linksObenGen = new SudokuGenerator(9);
-    linksObenGen->gitter.setQuadPermanent(0, 0, untenRechts.getQuad(2, 2));
+    SudokuGenerator *linksObenGen = new SudokuGenerator(elementCount);
+    linksObenGen->gitter.setQuadPermanent(0, 0,
+                                          untenRechts.getQuad(gitter.getQuadHeight() - 1, gitter.getQuadWidth() - 1));
     SudokuGitter linksOben = linksObenGen->generateNewFromRow(0);
 
-    return tuple<SudokuGitter, SudokuGitter>(untenRechts,linksOben);
+    //printCelVecValPtr(untenRechts.getQuad(gitter.getQuadHeight() - 1, gitter.getQuadWidth() - 1), "LinksObenUebernehmen");
+
+    return tuple<SudokuGitter, SudokuGitter>(untenRechts, linksOben);
 }
 
 /**

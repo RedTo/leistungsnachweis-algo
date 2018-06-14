@@ -134,7 +134,11 @@ const std::string BigSudokuVisualizer::createCells(SudokuGitter gitter1, SudokuG
             counter++;
         }
         counter2 += gitter2.getQuadWidth();
-        for (unsigned int col = gitter2.getQuadWidth(); col < size; col++) {
+        unsigned int col = gitter2.getQuadWidth();
+        if(col == size){
+            col--;
+        }
+        for (col; col < size; col++) {
             unsigned int num = gitter2.getCell(times, col).value;
             if (num > 0) {
                 cells.append("<td><input id='cell-");

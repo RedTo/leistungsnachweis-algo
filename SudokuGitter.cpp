@@ -81,7 +81,8 @@ SudokuGitter::setQuadPermanent(unsigned int hoehenIndex, unsigned int breitenInx
 
     for (int heightIndex = 0; heightIndex < quadHeight; heightIndex++) {
         for (int widthIndex = 0; widthIndex < quadWidth; widthIndex++) {
-            cells[heightIndex + startHeightIndex][widthIndex + startWidthIndex] = cell(*quadToSet[heightIndex][widthIndex], true);
+            cells[heightIndex + startHeightIndex][widthIndex + startWidthIndex] = cell(
+                    *quadToSet[heightIndex][widthIndex], true);
         }
     }
 }
@@ -157,7 +158,7 @@ void SudokuGitter::printCellVec(vector<cell> vec, string name) {
  * @param vec auszugebende Vektor
  * @param name Name des Vektors
  */
-void SudokuGitter::printIntVec(vector<unsigned  int> vec, string name) {
+void SudokuGitter::printIntVec(vector<unsigned int> vec, string name) {
     // Print Original Vector
     std::cout << name << ": ";
     for (unsigned int i = 0; i < vec.size(); i++)

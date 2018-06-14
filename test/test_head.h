@@ -137,7 +137,7 @@ namespace {
         tuple<SudokuGitter, SudokuGitter> bigGitter = std::make_tuple(gitter1, gitter2);
 
         BigSudokuVisualizer visualizer = BigSudokuVisualizer(bigGitter);
-        visualizer.createHTML("output/sudoku" + std::to_string(size) + ".html");
+        visualizer.createHTML("output/big_sudoku" + std::to_string(size) + ".html");
     }
 }
 
